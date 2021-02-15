@@ -5,7 +5,7 @@
   "keywords": [],
   "type": "module",
   "name": "graphql-sequelize-r-example",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "main": "src/server.js",
   "dependencies": {
     "@molaux/graphql-sequelize-r": "^2.0.0-alpha",
