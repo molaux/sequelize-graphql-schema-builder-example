@@ -9,6 +9,7 @@
   "main": "src/server.js",
   "dependencies": {
     "@molaux/graphql-sequelize-r": "^2.0.0-alpha",
+    "@molaux/graphql-sequelize-r-react-admin": "^2.0.0-alpha",
     "apollo-server": "^2.19.2",
     "apollo-server-express": "^2.19.2",
     "bcrypt": "^5.0.0",

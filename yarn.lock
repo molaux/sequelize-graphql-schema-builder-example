@@ -3,9 +3,9 @@
 
 
 "@apollo/client@^3.2.5":
-  version "3.3.9"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.3.9.tgz#f3ad07fd3f3ef4aaf9a25e3b5f99e5cca6440322"
-  integrity sha512-4koVaCKcztuNZCiKP/nyghCVon1Y0+EoIpBytTDTvn7L+QkEQpgKZiWcRGnuJjdvL8QlKiiV7zhdJOiDhIoiUw==
+  version "3.3.10"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.3.10.tgz#4fbba049e6b92ac47638cb472db9e653462fa514"
+  integrity sha512-OL5y8q5evSbvsqMAHKZJgfgB/MS9PLGF7f0MtHEkGGCDvmcmA81lsjYwk0xpDm/3XdnrYp/duN2tYUu2LnpJmw==
   dependencies:
     "@graphql-typed-document-node/core" "^3.0.0"
     "@types/zen-observable" "^0.8.0"
@@ -771,12 +771,20 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.0.tgz#0eee6373e11418bfe0b5638f654df7a4ca6a3950"
   integrity sha512-wYn6r8zVZyQJ6rQaALBEln5B1pzxb9shV5Ef97kTvn6yVGrqyXVnDqnU24MXnFubR+rZjBY9NWuxX3FB2sTsjg==
 
+"@molaux/graphql-sequelize-r-react-admin@^2.0.0-alpha":
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@molaux/graphql-sequelize-r-react-admin/-/graphql-sequelize-r-react-admin-2.0.0-alpha.1.tgz#cb38d5389bf7c2365e70dafa71ed8edd391c20de"
+  integrity sha512-vUcgGd20iR+Y70cLrWfhPanARdLYugAt4isV5BQv5c6NRo2qK6HzNTUxmUlpmWq8NebD27OdQn7Svf1iXWQ4Nw==
+  dependencies:
+    pluralize "^8.0.0"
+
 "@molaux/graphql-sequelize-r@^2.0.0-alpha":
-  version "2.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@molaux/graphql-sequelize-r/-/graphql-sequelize-r-2.0.0-alpha.0.tgz#a5111b099e22f39dad9daef2f06e51e63d479b17"
-  integrity sha512-mxicoNfmg0Do85urZe9izHanQx0iF/F4bTTbKo0Tg0KbAsBp4mdIC3bu8+JVGvSF6JGA0cVhB3YW4VXeS24kBA==
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/@molaux/graphql-sequelize-r/-/graphql-sequelize-r-2.0.0-alpha.1.tgz#1b45bf817779a0a27d4417f6d307d445a29177f2"
+  integrity sha512-VxDb8iLOPYD7UHHUZavp+Evsez4dRwHw4C8q8Qe2Kh8Iz4JgsIyHYVSntfcXHDrXjMhEBb5Sl7xm/LJv1xoe3A==
   dependencies:
     deepmerge "^4.2.2"
+    graphql-sequelize "^9.4.2"
     pluralize "^8.0.0"
     ucfirst "^1.0.0"
 
@@ -1006,14 +1014,14 @@
     form-data "^3.0.0"
 
 "@types/node@*":
-  version "14.14.27"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.27.tgz#c7127f8da0498993e13b1a42faf1303d3110d2f2"
-  integrity sha512-Ecfmo4YDQPwuqTCl1yBxLV5ihKfRlkBmzUEDcfIRvDxOTGQEeikr317Ln7Gcv0tjA8dVgKI3rniqW2G1OyKDng==
+  version "14.14.28"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.28.tgz#cade4b64f8438f588951a6b35843ce536853f25b"
+  integrity sha512-lg55ArB+ZiHHbBBttLpzD07akz0QPrZgUODNakeC09i62dnrywr9mFErHuaPlB6I7z+sEbK+IYmplahvplCj2g==
 
 "@types/node@^10.1.0":
-  version "10.17.51"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.51.tgz#639538575befbcf3d3861f95c41de8e47124d674"
-  integrity sha512-KANw+MkL626tq90l++hGelbl67irOJzGhUJk6a1Bt8QHOeh9tztJx+L0AqttraWKinmZn7Qi5lJZJzx45Gq0dg==
+  version "10.17.52"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.52.tgz#dc960d4e256331b3c697b7a573ee98b882febee5"
+  integrity sha512-bKnO8Rcj03i6JTzweabq96k29uVNcXGB0bkwjVQTFagDgxxNged18281AZ0nTMHl+aFpPPWyPrk4Z3+NtW/z5w==
 
 "@types/qs@*":
   version "6.9.5"
@@ -2785,9 +2793,9 @@ graphql-request@^3.4.0:
     form-data "^3.0.0"
 
 graphql-sequelize@^9.4.2:
-  version "9.4.2"
-  resolved "https://registry.yarnpkg.com/graphql-sequelize/-/graphql-sequelize-9.4.2.tgz#67206cff1804e042b18a6929ddd8c0a4a5a50f8f"
-  integrity sha512-z0dZEDJ+OfxNasJpeuoy4j4Od5VABhWdNlcAo9QMUxwqh2UVsHRBornEWAuv4EL/8vAW2MeqkoyHLE6oXGu2Dw==
+  version "9.4.3"
+  resolved "https://registry.yarnpkg.com/graphql-sequelize/-/graphql-sequelize-9.4.3.tgz#5fe1f91827ffdcf2076ed7db09667709c2c18ccd"
+  integrity sha512-4Ad3FJgZz05aIIJs+MeGyDEG+VY1DtNW5q8VoP2ZPV0ZDt/q1/Cssskam9AvVaQAyqNmfmB2+BFH6ydfoTiAnQ==
   dependencies:
     bluebird "^3.4.0"
     invariant "2.2.1"
