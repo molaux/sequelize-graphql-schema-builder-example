@@ -1,0 +1,44 @@
+{
+  "author": "Marc-Olivier Laux <marc-olivier@matlaux.net> (https://github.com/molaux)",
+  "license": "ISC",
+  "description": "GraphQL Sequelize R example",
+  "keywords": [],
+  "type": "module",
+  "name": "graphql-sequelize-r-example",
+  "version": "1.0.0-alpha.0",
+  "main": "src/server.js",
+  "dependencies": {
+    "@molaux/graphql-sequelize-r": "^2.0.0-alpha",
+    "apollo-server": "^2.19.2",
+    "apollo-server-express": "^2.19.2",
+    "bcrypt": "^5.0.0",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "fast-deep-equal": "^3.1.3",
+    "graphql": "^15.5.0",
+    "graphql-relay": "^0.6.0",
+    "graphql-request": "^3.4.0",
+    "graphql-sequelize": "^9.4.2",
+    "graphql-subscriptions": "^1.1.0",
+    "graphql-tools": "^7.0.2",
+    "graphql-type-json": "^0.3.2",
+    "jsonwebtoken": "^8.5.1",
+    "sequelize": "^6.5.0",
+    "sqlite3": "^5.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --experimental-specifier-resolution=node --max-old-space-size=8192 --preserve-symlinks --no-warnings src/server.js",
+    "start-dev": "nodemon --experimental-specifier-resolution=node --max-old-space-size=8192 --preserve-symlinks --trace-warnings src/server.js"
+  }
+}
