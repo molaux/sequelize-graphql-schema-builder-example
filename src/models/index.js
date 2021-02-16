@@ -28,16 +28,15 @@ const loadModels = async () => {
   for (const dbDirName of getDirectories(__dirname)) {
     const dbName = path.basename(dbDirName)
     console.log(`Loading ${dbName} database repo...`)
-    const config = Object.assign({}, {
-      operatorsAliases: Op
-    }, configData[dbName][env])
 
-    let sequelize
-    if (config.use_env_variable) {
-      sequelize = new Sequelize(process.env[config.use_env_variable], config)
-    } else {
-      sequelize = new Sequelize(config.database, config.username, config.password, config)
+    const config = configData[dbName][env]
+    if (config.logging === true) {
+      config.logging = console.log
     }
+
+    const sequelize = config.use_env_variable
+      ? new Sequelize(process.env[config.use_env_variable], config)
+      : new Sequelize(config.database, config.username, config.password, config)
 
     const models = await Promise.all(fs
       .readdirSync(dbDirName)
