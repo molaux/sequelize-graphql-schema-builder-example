@@ -44,19 +44,19 @@ const { sequelizeToGraphQLSchemaBuilder } = graphqlSequelizeR
 const schema = dbs => {
   console.log('Building API Schema...')
   const {
-    modelsTypes,
+    // modelsTypes,
     queries
-  } = sequelizeToGraphQLSchemaBuilder(dbs.sakila, { 
+  } = sequelizeToGraphQLSchemaBuilder(dbs.sakila, {
     namespace: '',
     extraModelFields: (...args) => ({
-        // ...reactAdminFieldsGenerator(...args),
-      }),
+      // ...reactAdminFieldsGenerator(...args),
+    }),
     extraModelQueries: () => ({}), // reactAdminQueriesGenerator,
     extraModelTypes: (...args) => ({
-        // ...reactAdminTypesGenerator(...args),
-      }),
+      // ...reactAdminTypesGenerator(...args),
+    })
     // debug: true
-   })
+  })
 
   return new GraphQLSchema({
     query: new GraphQLObjectType({
@@ -94,8 +94,8 @@ const schema = dbs => {
           },
           // implement your own authentication logic here
           resolve: (_, { login: uid, password }, { ldapAuth, req }) => jwt.sign({
-              uid
-            }, process.env.JWT_SECRET /*, { expiresIn: '1y' } */)
+            uid
+          }, process.env.JWT_SECRET /*, { expiresIn: '1y' } */)
         },
         ...securizeAllResolvers({
           // ...otherMutations()

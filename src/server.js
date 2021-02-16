@@ -79,7 +79,6 @@ const startServer = async () => {
 
   // Create our express app
   // Graphql endpoint
-  
   app.use(process.env.API_APOLLO_PATH,
     (process.env.NODE_ENV || 'development') === 'development'
       ? (req, res, next) => {

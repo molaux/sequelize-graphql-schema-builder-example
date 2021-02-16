@@ -14,7 +14,6 @@ const __dirname = dirname(__filename)
 
 dotenv.config()
 
-const Op = Sequelize.Op
 const env = process.env.NODE_ENV || 'development'
 
 const loadModels = async () => {
@@ -44,13 +43,13 @@ const loadModels = async () => {
         return (file.indexOf('.') !== 0) && (file !== path.basename(__filename)) && (file.slice(-4) === '.cjs')
       })
       .map(async file => await Promise.all([
-          import(path.join(dbDirName, file)),
-          fs.existsSync(path.join(dbDirName, 'extensions', file))
-            ? import(path.join(dbDirName, 'extensions', file))
-            : Promise.resolve({ default: sequelize => o => o })
-        ])
+        import(path.join(dbDirName, file)),
+        fs.existsSync(path.join(dbDirName, 'extensions', file))
+          ? import(path.join(dbDirName, 'extensions', file))
+          : Promise.resolve({ default: sequelize => o => o })
+      ])
       )
-    ).then(modules => modules.reduce((o, [ module, extend ]) => {
+    ).then(modules => modules.reduce((o, [module, extend]) => {
       const model = module.default(sequelize, extend.default(sequelize))
       return ({ ...o, [model.name]: model })
     }, {}))
@@ -60,7 +59,7 @@ const loadModels = async () => {
         models[modelName].associate(models)
       }
     })
-  
+
     dbs[dbName] = sequelize
   }
   return dbs
