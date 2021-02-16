@@ -1,6 +1,6 @@
 # [GraphQL Sequelize R](https://github.com/molaux/graphql-sequelize-r) and [Node exporter](https://github.com/molaux/node-exporter) example
 
-The goal is to convert a [MySQL Worrbench](http://www.mysql.com/products/workbench/) Model to a GraphQL API.
+The goal is to convert a [MySQL Workbench](http://www.mysql.com/products/workbench/) Model to a GraphQL API.
 
 This example uses a [slightly modified version of the Skila sample model](tree/master/data/sakila-db/sakila-modified.mwb) from [MySQL](https://dev.mysql.com/doc/sakila/en/sakila-installation.html) : removed unwanted schemas, renamed redundant foreign keys indexes names and modified `lastUpdate` fields default values that sqlite does not implements.
 
