@@ -45,7 +45,8 @@ const schema = dbs => {
   console.log('Building API Schema...')
   const {
     // modelsTypes,
-    queries
+    queries,
+    mutations
   } = sequelizeToGraphQLSchemaBuilder(dbs.sakila, {
     namespace: '',
     extraModelFields: (...args) => ({
@@ -98,6 +99,7 @@ const schema = dbs => {
           }, process.env.JWT_SECRET /*, { expiresIn: '1y' } */)
         },
         ...securizeAllResolvers({
+          ...mutations
           // ...otherMutations()
         })
       })
