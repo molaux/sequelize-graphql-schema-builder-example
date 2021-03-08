@@ -1,15 +1,14 @@
 {
   "author": "Marc-Olivier Laux <marc-olivier@matlaux.net> (https://github.com/molaux)",
   "license": "ISC",
-  "description": "GraphQL Sequelize R example",
+  "description": "Sequelize GraphQL Schema Builder demonstration example",
   "keywords": [],
   "type": "module",
   "name": "graphql-sequelize-r-example",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "main": "src/server.js",
   "dependencies": {
-    "@molaux/graphql-sequelize-r": "^2.0.0-alpha",
-    "@molaux/graphql-sequelize-r-react-admin": "^2.0.0-alpha",
+    "@molaux/sequelize-graphql-schema-builder": "^2.0.0-alpha",
     "apollo-server": "^2.19.2",
     "apollo-server-express": "^2.19.2",
     "bcrypt": "^5.0.0",
@@ -26,6 +25,8 @@
     "graphql-tools": "^7.0.2",
     "graphql-type-json": "^0.3.2",
     "jsonwebtoken": "^8.5.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^6.5.0",
     "sqlite3": "^5.0.1"
   },

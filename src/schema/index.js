@@ -2,22 +2,25 @@
 import dotenv from 'dotenv'
 import packageJsonData from '../../package.json'
 import graphql from 'graphql'
-// import graphqlSequelizeRReactAdmin from '@molaux/graphql-sequelize-r-react-admin'
-import graphqlSequelizeR from '@molaux/graphql-sequelize-r'
+import sequelizeGraphQLSchemaBuilder from '@molaux/sequelize-graphql-schema-builder'
 import jwt from 'jsonwebtoken'
+import Sequelize from 'sequelize'
+import _GraphQLJSON from 'graphql-type-json'
+const { GraphQLJSON } = _GraphQLJSON
+const { QueryTypes } = Sequelize
 
 dotenv.config()
 const packageJson = Object.assign({}, {
   version: 'Unknown'
 }, packageJsonData)
-const { GraphQLObjectType, GraphQLNonNull, GraphQLString, GraphQLSchema } = graphql
 
-// const {
-//   extraModelFields: reactAdminFieldsGenerator,
-//   extraModelQueries: reactAdminQueriesGenerator,
-//   extraModelTypes: reactAdminTypesGenerator,
-//   extraTypes: reactAdminExtraTypes
-// } = graphqlSequelizeRReactAdmin
+const {
+  GraphQLObjectType,
+  GraphQLNonNull,
+  GraphQLString,
+  GraphQLSchema,
+  GraphQLList
+} = graphql
 
 const securizeResolver = resolver => (parent, args, { user, ...context }, ...rest) => {
   if (!user) {
@@ -39,7 +42,7 @@ const securizeAllResolvers = o => {
   return o
 }
 
-const { sequelizeToGraphQLSchemaBuilder } = graphqlSequelizeR
+const { schemaBuilder } = sequelizeGraphQLSchemaBuilder
 
 const schema = dbs => {
   console.log('Building API Schema...')
@@ -47,23 +50,23 @@ const schema = dbs => {
     // modelsTypes,
     queries,
     mutations
-  } = sequelizeToGraphQLSchemaBuilder(dbs.sakila, {
-    namespace: '',
-    extraModelFields: (...args) => ({
-      // ...reactAdminFieldsGenerator(...args),
-    }),
-    extraModelQueries: () => ({}), // reactAdminQueriesGenerator,
-    extraModelTypes: (...args) => ({
-      // ...reactAdminTypesGenerator(...args),
-    })
-    // debug: true
-  })
+  } = schemaBuilder(dbs.sakila)
 
   return new GraphQLSchema({
     query: new GraphQLObjectType({
       name: 'RootQueryType',
       fields: () => ({
         ...securizeAllResolvers({
+          sql: {
+            name: 'Raw SQL query',
+            type: new GraphQLList(GraphQLJSON),
+            args: {
+              request: { type: GraphQLString }
+            },
+            resolve: (_, { request }, { databases }) => {
+              return databases.sakila.query(request, { raw: true, type: QueryTypes.SELECT })
+            }
+          },
           ...queries
           // ... otherQueries
         }),

@@ -35,10 +35,11 @@ const startServer = async () => {
   // sync
   await databases.sakila.sync()
 
-  // insert sample data
+  // // insert sample data
   const insertQueries = fs.readFileSync(path.join(__dirname, '../data/sakila-db/sakila-data.sql')).toString().split(';')
+  console.log('Data insertion...')
   for (const insertQuery of insertQueries) {
-    await databases.sakila.query(insertQuery)
+    await databases.sakila.query(insertQuery, { logging: false })
   }
 
   const { Staff } = databases.sakila.models

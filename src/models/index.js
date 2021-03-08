@@ -62,6 +62,7 @@ const loadModels = async () => {
 
     dbs[dbName] = sequelize
   }
+
   return dbs
 }
 export default loadModels
