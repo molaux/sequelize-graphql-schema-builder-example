@@ -6,10 +6,8 @@ const { GraphQLJSON } = _GraphQLJSON
 const register = new Map()
 
 export const extraFields = ({ modelsTypes, nameFormatter }, model) => {
-  if (model === undefined) {
-    return {}
-  }
   const extraFields = {}
+
   if (nameFormatter.namespace === '' && model.name === 'Country') {
     extraFields.infos = {
       type: GraphQLJSON,
@@ -17,7 +15,7 @@ export const extraFields = ({ modelsTypes, nameFormatter }, model) => {
        * A regular GraphQL resolver
        *
        * Here you can link your model to whatever you want.
-       * You can pass services handlers through the graphQLContext, like other 
+       * You can pass services handlers through the graphQLContext, like other
        * Sequelize instances (to build fake links between two databases), or mongo, ...
        *
        * @param {*} parent The parent node resolved against a Country Sequelize model instance
