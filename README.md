@@ -54,4 +54,5 @@ The playground should be available at [http://localhost:3331/api](http://localho
 ## Advanced examples
 
 Beyond the [main example](https://github.com/molaux/sequelize-graphql-schema-builder-example), you can switch to the following branch for other demonstartions :
-  * [extra-fields](https://github.com/molaux/sequelize-graphql-schema-builder-example/tree/extra-fields) illustrates the [extraModelFields callback](https://github.com/molaux/sequelize-graphql-schema-builder#extramodelfields-modelstypes-nameformatter-logger--model)
+  * [`extra-fields`](https://github.com/molaux/sequelize-graphql-schema-builder-example/tree/extra-fields) illustrates the [extraModelFields callback](https://github.com/molaux/sequelize-graphql-schema-builder#extramodelfields-modelstypes-nameformatter-logger--model)
+  * [`subscriptions`](https://github.com/molaux/sequelize-graphql-schema-builder-example/tree/subscriptions) adds [schema builder subscriptions](https://github.com/molaux/sequelize-graphql-schema-builder#subscriptions)
