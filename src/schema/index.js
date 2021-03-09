@@ -77,12 +77,6 @@ const schema = dbs => {
         }
       })
     }),
-    // subscription: new GraphQLObjectType({
-    //   name: 'RootSubscriptionType',
-    //   fields: () => securizeAllResolvers({
-    //     ...mySubscriptions({ modelsTypes }),
-    //   })
-    // }),
     mutation: new GraphQLObjectType({
       name: 'RootMutationType',
       fields: () => ({

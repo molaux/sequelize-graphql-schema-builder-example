@@ -5,12 +5,10 @@ import https from 'https'
 import http from 'http'
 import schema from './schema'
 import expressJwt from 'express-jwt'
-import jwt from 'jsonwebtoken'
 import express from 'express'
 import fs from 'fs'
 import loadModels from './models'
 import apolloServerExpress from 'apollo-server-express'
-// import graphqlSubscriptions from 'graphql-subscriptions'
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 
@@ -53,28 +51,7 @@ const startServer = async () => {
       databases,
       req,
       user: req ? req.user : connection ? connection.context.user : null
-    }),
-    subscriptions: {
-      path: process.env.API_APOLLO_PATH,
-      onConnect: (connectionParams, webSocket) => {
-        if (connectionParams.authToken) {
-          return Promise.resolve({
-            user:
-              (process.env.NODE_ENV || 'development') === 'development'
-                ? {
-                    mock: true,
-                    uuid: connectionParams.uuid
-                  }
-                : {
-                    ...jwt.verify(connectionParams.authToken, process.env.JWT_SECRET),
-                    uuid: connectionParams.uuid
-                  }
-          })
-        }
-
-        throw new Error('Missing auth token!')
-      }
-    }
+    })
   })
   const app = express()
 
