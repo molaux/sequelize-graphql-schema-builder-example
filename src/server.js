@@ -5,8 +5,8 @@ import https from 'https'
 import http from 'http'
 import schema from './schema'
 import expressJwt from 'express-jwt'
-import jwt from 'jsonwebtoken'
 import express from 'express'
+import jwt from 'jsonwebtoken'
 import fs from 'fs'
 import loadModels from './models'
 import apolloServerExpress from 'apollo-server-express'
@@ -23,6 +23,7 @@ console.log(`Server starting in ${colors.red(process.env.NODE_ENV || 'developmen
 const { ApolloServer } = apolloServerExpress
 
 const { PubSub } = graphqlSubscriptions
+const pubSub = new PubSub()
 
 const SECURED = process.env.SECURED === 'yes'
 
@@ -54,13 +55,14 @@ const startServer = async () => {
       ...(connection ? connection.context : {}),
       databases,
       req,
-      pubSub: new PubSub(),
+      pubSub,
       user: req ? req.user : connection ? connection.context.user : null
     }),
     subscriptions: {
       path: process.env.API_APOLLO_PATH,
       onConnect: (connectionParams, webSocket) => {
-        if (connectionParams.authToken) {
+        if ((process.env.NODE_ENV || 'development') === 'development' ||
+          connectionParams.authToken) {
           return Promise.resolve({
             user:
               (process.env.NODE_ENV || 'development') === 'development'

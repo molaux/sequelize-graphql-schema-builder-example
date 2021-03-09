@@ -44,6 +44,7 @@
     "start-dev": "nodemon --experimental-specifier-resolution=node --max-old-space-size=8192 --preserve-symlinks --trace-warnings src/server.js"
   },
   "nodemonConfig": {
-    "ext": "js,cjs,mjs,coffee,litcoffee,json,json5"
+    "ext": "js,cjs,mjs,coffee,litcoffee,json,json5",
+    "watch": ["src", "config", "package.json", "../sequelize-graphql-schema-builder/src"]
   }
 }
