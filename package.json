@@ -25,6 +25,7 @@
     "graphql-tools": "^7.0.2",
     "graphql-type-json": "^0.3.2",
     "jsonwebtoken": "^8.5.1",
+    "node-fetch": "^2.6.1",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.5.0",

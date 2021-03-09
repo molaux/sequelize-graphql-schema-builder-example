@@ -6,6 +6,9 @@ import sequelizeGraphQLSchemaBuilder from '@molaux/sequelize-graphql-schema-buil
 import jwt from 'jsonwebtoken'
 import Sequelize from 'sequelize'
 import _GraphQLJSON from 'graphql-type-json'
+
+import { extraFields as countryExtraFields } from './country'
+
 const { GraphQLJSON } = _GraphQLJSON
 const { QueryTypes } = Sequelize
 
@@ -50,7 +53,12 @@ const schema = dbs => {
     // modelsTypes,
     queries,
     mutations
-  } = schemaBuilder(dbs.sakila)
+  } = schemaBuilder(dbs.sakila, {
+    extraModelFields: (...args) => ({
+      ...countryExtraFields(...args)
+      // ...Add other extraFields hooks here
+    })
+  })
 
   return new GraphQLSchema({
     query: new GraphQLObjectType({
