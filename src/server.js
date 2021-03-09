@@ -10,7 +10,7 @@ import express from 'express'
 import fs from 'fs'
 import loadModels from './models'
 import apolloServerExpress from 'apollo-server-express'
-// import graphqlSubscriptions from 'graphql-subscriptions'
+import graphqlSubscriptions from 'graphql-subscriptions'
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 
@@ -21,6 +21,8 @@ dotenv.config()
 console.log(`Server starting in ${colors.red(process.env.NODE_ENV || 'development')} mode...`)
 
 const { ApolloServer } = apolloServerExpress
+
+const { PubSub } = graphqlSubscriptions
 
 const SECURED = process.env.SECURED === 'yes'
 
@@ -52,6 +54,7 @@ const startServer = async () => {
       ...(connection ? connection.context : {}),
       databases,
       req,
+      pubSub: new PubSub(),
       user: req ? req.user : connection ? connection.context.user : null
     }),
     subscriptions: {
@@ -62,13 +65,9 @@ const startServer = async () => {
             user:
               (process.env.NODE_ENV || 'development') === 'development'
                 ? {
-                    mock: true,
-                    uuid: connectionParams.uuid
+                    mock: true
                   }
-                : {
-                    ...jwt.verify(connectionParams.authToken, process.env.JWT_SECRET),
-                    uuid: connectionParams.uuid
-                  }
+                : jwt.verify(connectionParams.authToken, process.env.JWT_SECRET)
           })
         }
 

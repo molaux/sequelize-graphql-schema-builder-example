@@ -49,7 +49,8 @@ const schema = dbs => {
   const {
     // modelsTypes,
     queries,
-    mutations
+    mutations,
+    subscriptions
   } = schemaBuilder(dbs.sakila)
 
   return new GraphQLSchema({
@@ -77,12 +78,10 @@ const schema = dbs => {
         }
       })
     }),
-    // subscription: new GraphQLObjectType({
-    //   name: 'RootSubscriptionType',
-    //   fields: () => securizeAllResolvers({
-    //     ...mySubscriptions({ modelsTypes }),
-    //   })
-    // }),
+    subscription: new GraphQLObjectType({
+      name: 'RootSubscriptionType',
+      fields: () => securizeAllResolvers(subscriptions)
+    }),
     mutation: new GraphQLObjectType({
       name: 'RootMutationType',
       fields: () => ({
