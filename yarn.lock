@@ -671,9 +671,9 @@
     tslib "~2.1.0"
 
 "@graphql-tools/load-files@^6.2.4":
-  version "6.2.7"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/load-files/-/load-files-6.2.7.tgz#4dc90420fc3468e16394b87bbcb1054fff418b2d"
-  integrity sha512-6L0d+F1jJkamiUNPjmxVDRMrauaD/Jp9aSzmp9zxeeZhIuG6V/jbhBBgMbNscMviYJfwDbHvnOJ3fmYpZyM9kg==
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/load-files/-/load-files-6.3.0.tgz#3957e21e14eb078f68fb4ebe84702f1bdc03ca23"
+  integrity sha512-qDEMz3f5CQz8lIvIhzJVK6Fvd6TMMbhuqded4x5I6zWEetR4AUmwneHWnQkwyIRqDDGgy6VlBw7GToucUkvQag==
   dependencies:
     globby "11.0.2"
     tslib "~2.1.0"
@@ -831,12 +831,13 @@
     tar "^6.1.0"
 
 "@molaux/sequelize-graphql-schema-builder@^2.0.0-alpha":
-  version "2.0.0-alpha.9"
-  resolved "https://registry.yarnpkg.com/@molaux/sequelize-graphql-schema-builder/-/sequelize-graphql-schema-builder-2.0.0-alpha.9.tgz#98d6100f463cb2a7a199fb21bfc7b1dd551de799"
-  integrity sha512-ryTsm1KFy/0bRXVdte8NsThtHvy0fcnbQ9SogtbiIHx3+Gr8uT0d3F3Hwk45FfIlXJES+p6EATnlisFnQlPOkA==
+  version "2.0.0-alpha.10"
+  resolved "https://registry.yarnpkg.com/@molaux/sequelize-graphql-schema-builder/-/sequelize-graphql-schema-builder-2.0.0-alpha.10.tgz#2c8ddcec8d74f81e76252fda71ef14d42d718656"
+  integrity sha512-3GZ5JGcXb1k4xZqZc2NshDcLdJ6j1SkCr51cNMzY0+WXU1aDECB73rBzDqfYmH5LwkJ1Pum4Zr9tRIC0zL2Bgg==
   dependencies:
     deepmerge "^4.2.2"
     graphql-sequelize "^9.4.2"
+    graphql-subscriptions "^1.2.1"
     pluralize "^8.0.0"
 
 "@nodelib/fs.scandir@2.1.4":
@@ -2914,7 +2915,7 @@ graphql-sequelize@^9.4.2:
     invariant "2.2.1"
     lodash "^4.0.0"
 
-graphql-subscriptions@^1.0.0, graphql-subscriptions@^1.1.0:
+graphql-subscriptions@^1.0.0, graphql-subscriptions@^1.1.0, graphql-subscriptions@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/graphql-subscriptions/-/graphql-subscriptions-1.2.1.tgz#2142b2d729661ddf967b7388f7cf1dd4cf2e061d"
   integrity sha512-95yD/tKi24q8xYa7Q9rhQN16AYj5wPbrb8tmHGM3WRc9EBmWrG/0kkMl+tQG8wcEuE9ibR4zyOM31p5Sdr2v4g==
