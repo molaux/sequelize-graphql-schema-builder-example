@@ -831,9 +831,9 @@
     tar "^6.1.0"
 
 "@molaux/sequelize-graphql-schema-builder@^2.0.0-alpha":
-  version "2.0.0-alpha.10"
-  resolved "https://registry.yarnpkg.com/@molaux/sequelize-graphql-schema-builder/-/sequelize-graphql-schema-builder-2.0.0-alpha.10.tgz#2c8ddcec8d74f81e76252fda71ef14d42d718656"
-  integrity sha512-3GZ5JGcXb1k4xZqZc2NshDcLdJ6j1SkCr51cNMzY0+WXU1aDECB73rBzDqfYmH5LwkJ1Pum4Zr9tRIC0zL2Bgg==
+  version "2.0.0-alpha.11"
+  resolved "https://registry.yarnpkg.com/@molaux/sequelize-graphql-schema-builder/-/sequelize-graphql-schema-builder-2.0.0-alpha.11.tgz#9f2593497acc2bb24455914a3ad49a26409655ed"
+  integrity sha512-tt1sTM3TzlIaplCgMgYWWTneJbgN41pmJ119xhP3yUMjd1vJN2An78ZtJLm7x4CESkyAD09Po07b4S6t0kduzg==
   dependencies:
     deepmerge "^4.2.2"
     graphql-sequelize "^9.4.2"
