@@ -50,3 +50,8 @@ The playground should be available at [http://localhost:3331/api](http://localho
 ## API documentation
 
 [Sequelize GraphQL Schema Builder](https://github.com/molaux/sequelize-graphql-schema-builder)
+
+## Advanced examples
+
+Beyond the main example, you can switch to the following branch for other demonstartions :
+  * [extra-fields](tree/extra-fields) illustrates the [extraModelFields callback](https://github.com/molaux/sequelize-graphql-schema-builder#extramodelfields-modelstypes-nameformatter-logger--model)
