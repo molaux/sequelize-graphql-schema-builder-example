@@ -9,6 +9,7 @@ import apolloServerExpress from 'apollo-server-express'
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 import graphqlSubscriptions from 'graphql-subscriptions'
+import jwt from 'jsonwebtoken'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

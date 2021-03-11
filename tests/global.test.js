@@ -9,7 +9,7 @@ const __dirname = dirname(__filename)
 
 let request
 beforeAll(async () => {
-  request = st(await app())
+  request = st((await app()).app)
   return request
 }, 20000)
 
