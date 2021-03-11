@@ -3,22 +3,10 @@ import dotenv from 'dotenv'
 import colors from 'colors'
 import https from 'https'
 import http from 'http'
-import schema from './schema'
-import expressJwt from 'express-jwt'
-import express from 'express'
 import fs from 'fs'
-import loadModels from './models'
-import apolloServerExpress from 'apollo-server-express'
-import { fileURLToPath } from 'url'
-import path, { dirname } from 'path'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+import appBuilder from './app'
 
 dotenv.config()
-console.log(`Server starting in ${colors.red(process.env.NODE_ENV || 'development')} mode...`)
-
-const { ApolloServer } = apolloServerExpress
 
 const SECURED = process.env.SECURED === 'yes'
 
@@ -28,74 +16,21 @@ const credentials = {
 }
 
 const startServer = async () => {
-  const databases = await loadModels()
+  console.log(`Server starting in ${colors.red(process.env.NODE_ENV || 'development')} mode...`)
 
-  // sync
-  await databases.sakila.sync()
-
-  // // insert sample data
-  const insertQueries = fs.readFileSync(path.join(__dirname, '../data/sakila-db/sakila-data.sql')).toString().split(';')
-  console.log('Data insertion...')
-  for (const insertQuery of insertQueries) {
-    await databases.sakila.query(insertQuery, { logging: false })
-  }
-
-  const { Staff } = databases.sakila.models
-  console.log('Staffs', await Staff.findAll())
-
-  console.log('Building Apollo server...')
-  const apolloServer = new ApolloServer({
-    schema: schema(databases),
-    context: ({ req, res, connection }) => ({ // add your own context here
-      ...(connection ? connection.context : {}),
-      databases,
-      req,
-      user: req ? req.user : connection ? connection.context.user : null
-    })
-  })
-  const app = express()
-
-  // Create our express app
-  // Graphql endpoint
-  app.use(process.env.API_APOLLO_PATH,
-    (process.env.NODE_ENV || 'development') === 'development'
-      ? (req, res, next) => {
-          req.user = { mock: true }
-          next()
-        }
-      : expressJwt({
-        secret: process.env.JWT_SECRET,
-        credentialsRequired: false
-      }))
-
-  // Handle uuid
-  app.use(process.env.API_APOLLO_PATH, function (req, res, next) {
-    if (req.headers && req.user) {
-      req.user.uuid = req.headers.uuid
-    }
-    next()
-  })
-
-  // Handle errors
-  app.use(function (err, req, res, next) {
-    res.header('Access-Control-Allow-Headers', '*')
-    res.header('Access-Control-Allow-Origin', '*')
-    return next(err)
-  })
-
-  apolloServer.applyMiddleware({ app, path: process.env.API_APOLLO_PATH })
+  const app = await appBuilder()
 
   if (SECURED) {
     const httpsServer = https.createServer(credentials, app)
 
     httpsServer.listen({ host: process.env.HOST, port: process.env.PORT }, () => {
-      console.log(`  ${colors.brightGreen('✱')} ${colors.grey('Graphql API ready at')}           ${colors.brightGreen('https')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(apolloServer.graphqlPath)}`)
+      console.log(`  ${colors.brightGreen('✱')} ${colors.grey('Graphql API ready at')}           ${colors.brightGreen('https')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(process.env.API_APOLLO_PATH)}`)
     })
   } else {
     const httpServer = http.createServer(app)
 
     httpServer.listen({ host: process.env.HOST, port: process.env.PORT }, () => {
-      console.log(`  ${colors.yellow('✱')} ${colors.grey('Graphql API ready at')}           ${colors.yellow('http')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(apolloServer.graphqlPath)}`)
+      console.log(`  ${colors.yellow('✱')} ${colors.grey('Graphql API ready at')}           ${colors.yellow('http')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(process.env.API_APOLLO_PATH)}`)
     })
   }
 

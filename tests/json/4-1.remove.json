@@ -1,0 +1,36 @@
+{
+  "data": {
+    "updateFilm": [
+      {
+        "filmId": "1001",
+        "title": "updated title 3",
+        "Categories": [
+          {
+            "categoryId": "19",
+            "name": "Updated new category"
+          },
+          {
+            "categoryId": "20",
+            "name": "Updated other new category"
+          },
+          {
+            "categoryId": "21",
+            "name": "Added new category"
+          },
+          {
+            "categoryId": "22",
+            "name": "Added other new category"
+          }
+        ],
+        "Language": {
+          "languageId": "10",
+          "name": "updated new language 3"
+        },
+        "OriginalLanguage": {
+          "languageId": "1",
+          "name": "English"
+        }
+      }
+    ]
+  }
+}

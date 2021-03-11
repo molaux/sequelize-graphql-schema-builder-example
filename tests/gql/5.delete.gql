@@ -1,0 +1,5 @@
+mutation {
+  deleteFilm(query: { where: { filmId: 1001 } }) {
+    filmId
+  }
+}

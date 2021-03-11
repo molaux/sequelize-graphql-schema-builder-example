@@ -1,0 +1,43 @@
+mutation {
+  createFilm(input: {
+    title: "initial title"
+    # a new language
+    Language: { 
+    	name: "initial language" 
+  	}
+    # an existing language
+    OriginalLanguage: { 
+      languageId: 1
+    }
+    Categories: [
+      # a new Category
+      { 
+        name: "initial new category"
+      }
+      # an existing Category
+      {
+        categoryId: 14
+      }
+      # a new Category
+      { 
+        name: "initial other category"
+        # we can create other nested creations / associations as well
+      }
+    ]
+  }, atomic: true) {
+    filmId
+    title
+    Categories {
+      categoryId
+      name
+    }
+    Language {
+      languageId
+      name
+    }
+    OriginalLanguage {
+      languageId
+      name
+    }
+  }
+}

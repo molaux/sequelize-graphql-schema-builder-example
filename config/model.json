@@ -1,5 +1,15 @@
 {
   "sakila": {
+    "test": {
+      "username": null,
+      "password": null,
+      "database": null,
+      "dialect": "sqlite",
+      "storage": ":memory:",
+      "logging": false,
+      "dialectOptions": {
+      }
+    },
     "development": {
       "username": null,
       "password": null,
