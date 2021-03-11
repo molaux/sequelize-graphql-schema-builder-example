@@ -1,0 +1,15 @@
+mutation {
+  updateCategory(
+    query: { where: { categoryId: { _gtOp: 10 } } }, 
+    input: {
+      removeFilms: [
+        { filmId: 1001 }
+      ]
+    }) {
+    categoryId
+    name
+    Films(query: { order: [[ "filmId", "DESC" ]], limit: 3 }, dissociate: true) {
+      filmId
+    }
+  }
+}

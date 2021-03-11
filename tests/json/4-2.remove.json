@@ -1,0 +1,126 @@
+{
+  "data": {
+    "updateCategory": [
+      {
+        "categoryId": "11",
+        "name": "Horror",
+        "Films": [
+          {
+            "filmId": "998"
+          },
+          {
+            "filmId": "995"
+          },
+          {
+            "filmId": "990"
+          }
+        ]
+      },
+      {
+        "categoryId": "12",
+        "name": "Music",
+        "Films": [
+          {
+            "filmId": "997"
+          },
+          {
+            "filmId": "987"
+          },
+          {
+            "filmId": "983"
+          }
+        ]
+      },
+      {
+        "categoryId": "13",
+        "name": "New",
+        "Films": [
+          {
+            "filmId": "994"
+          },
+          {
+            "filmId": "974"
+          },
+          {
+            "filmId": "954"
+          }
+        ]
+      },
+      {
+        "categoryId": "14",
+        "name": "Sci-Fi",
+        "Films": [
+          {
+            "filmId": "985"
+          },
+          {
+            "filmId": "972"
+          },
+          {
+            "filmId": "967"
+          }
+        ]
+      },
+      {
+        "categoryId": "15",
+        "name": "Sports",
+        "Films": [
+          {
+            "filmId": "940"
+          },
+          {
+            "filmId": "917"
+          },
+          {
+            "filmId": "902"
+          }
+        ]
+      },
+      {
+        "categoryId": "16",
+        "name": "Travel",
+        "Films": [
+          {
+            "filmId": "989"
+          },
+          {
+            "filmId": "988"
+          },
+          {
+            "filmId": "981"
+          }
+        ]
+      },
+      {
+        "categoryId": "17",
+        "name": "initial new category",
+        "Films": []
+      },
+      {
+        "categoryId": "18",
+        "name": "initial other category",
+        "Films": []
+      },
+      {
+        "categoryId": "19",
+        "name": "Updated new category",
+        "Films": []
+      },
+      {
+        "categoryId": "20",
+        "name": "Updated other new category",
+        "Films": []
+      },
+      {
+        "categoryId": "21",
+        "name": "Added new category",
+        "Films": []
+      },
+      {
+        "categoryId": "22",
+        "name": "Added other new category",
+        "Films": []
+      }
+    ]
+  }
+}

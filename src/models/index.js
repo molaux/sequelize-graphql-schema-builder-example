@@ -5,7 +5,6 @@ import fs from 'fs'
 import Sequelize from 'sequelize'
 
 import configData from '../../config/model.json'
-
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 
@@ -27,7 +26,6 @@ const loadModels = async () => {
   for (const dbDirName of getDirectories(__dirname)) {
     const dbName = path.basename(dbDirName)
     console.log(`Loading ${dbName} database repo...`)
-
     const config = configData[dbName][env]
     if (config.logging === true) {
       config.logging = console.log
