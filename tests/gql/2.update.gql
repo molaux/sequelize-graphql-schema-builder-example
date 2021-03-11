@@ -1,0 +1,43 @@
+mutation {
+  updateFilm(query: { where: { filmId: 1001 } }, input: {
+    title: "updated title"
+    # a new language
+    Language: { 
+    	name: "updated new language" 
+  	}
+    # an existing language
+    OriginalLanguage: { 
+      languageId: 2
+    }
+    Categories: [
+      # a new Category
+      { 
+        name: "Updated new category"
+      }
+      # an existing Category
+      {
+        categoryId: 16
+      }
+      # a new Category
+      { 
+        name: "Updated other new category"
+        # we can create other nested creations / associations as well
+      }
+    ]
+  }) {
+    filmId
+    title
+    Categories {
+      categoryId
+      name
+    }
+    Language {
+      languageId
+      name
+    }
+    OriginalLanguage {
+      languageId
+      name
+    }
+  }
+}

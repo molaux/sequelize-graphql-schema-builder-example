@@ -1,0 +1,37 @@
+mutation {
+  updateFilm(query: { where: { filmId: 1001 } }, input: {
+    title: "updated title 3"
+    Language: { 
+    	name: "updated new language 3" 
+  	}
+    OriginalLanguage: { 
+      languageId: 1
+    }
+    removeCategories: [
+      { 
+        categoryId: 16
+      }
+      {
+        categoryId: 9
+      }
+      { 
+        categoryId: 23
+      }
+    ]
+  }) {
+    filmId
+    title
+    Categories {
+      categoryId
+      name
+    }
+    Language {
+      languageId
+      name
+    }
+    OriginalLanguage {
+      languageId
+      name
+    }
+  }
+}
