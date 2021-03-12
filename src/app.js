@@ -47,11 +47,11 @@ export default async () => {
     subscriptions: {
       path: process.env.API_APOLLO_PATH,
       onConnect: (connectionParams, webSocket) => {
-        if ((process.env.NODE_ENV || 'development') === 'development' ||
+        if ((process.env.NODE_ENV || 'development') !== 'production' ||
           connectionParams.authToken) {
           return Promise.resolve({
             user:
-              (process.env.NODE_ENV || 'development') === 'development'
+              (process.env.NODE_ENV || 'development') !== 'production'
                 ? {
                     mock: true
                   }

@@ -22,6 +22,7 @@ const startServer = async () => {
 
   if (SECURED) {
     const httpsServer = https.createServer(credentials, app)
+    apolloServer.installSubscriptionHandlers(httpsServer)
 
     httpsServer.listen({ host: process.env.HOST, port: process.env.PORT }, () => {
       console.log(`  ${colors.brightGreen('✱')} ${colors.grey('Graphql API ready at')}           ${colors.brightGreen('https')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(apolloServer.graphqlPath)}`)

@@ -1,9 +1,11 @@
 {
-  "data": {
-    "deleteFilm": [
-      {
-        "filmId": "1001"
-      }
-    ]
+  "response": {
+    "data": {
+      "deleteFilm": [
+        {
+          "filmId": "1001"
+        }
+      ]
+    }
   }
 }

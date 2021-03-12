@@ -1,0 +1,14 @@
+subscription {
+  createdFilm {
+    filmId
+    title
+    Categories {
+      categoryId
+      name
+    }
+    Language {
+      languageId
+      name
+    }
+  }
+}
