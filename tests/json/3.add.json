@@ -3,7 +3,7 @@
     "data": {
       "updateFilm": [
         {
-          "filmId": "1001",
+          "filmId": "1002",
           "title": "updated title 2",
           "Categories": [
             {
@@ -41,6 +41,144 @@
           }
         }
       ]
+    }
+  },
+  "publications": {
+    "updatedLanguage": {
+      "data": {
+        "updatedLanguage": [
+          {
+            "languageId": "1",
+            "name": "English",
+            "Films": [
+              {
+                "filmId": "1000",
+                "title": "ZORRO ARK"
+              },
+              {
+                "filmId": "999",
+                "title": "ZOOLANDER FICTION"
+              },
+              {
+                "filmId": "998",
+                "title": "ZHIVAGO CORE"
+              }
+            ],
+            "OriginalLanguageFilms": [
+              {
+                "filmId": "1002",
+                "title": "updated title 2"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "createdLanguage": {
+      "data": {
+        "createdLanguage": [
+          {
+            "languageId": "9",
+            "name": "updated new language 2",
+            "Films": [
+              {
+                "title": "updated title 2"
+              }
+            ],
+            "OriginalLanguageFilms": []
+          }
+        ]
+      }
+    },
+    "updatedFilm": {
+      "data": {
+        "updatedFilm": [
+          {
+            "filmId": "1002",
+            "title": "updated title 2",
+            "Categories": [
+              {
+                "categoryId": "16",
+                "name": "Travel"
+              },
+              {
+                "categoryId": "19",
+                "name": "Updated new category"
+              },
+              {
+                "categoryId": "20",
+                "name": "Updated other new category"
+              },
+              {
+                "categoryId": "9",
+                "name": "Foreign"
+              },
+              {
+                "categoryId": "21",
+                "name": "Added new category"
+              },
+              {
+                "categoryId": "22",
+                "name": "Added other new category"
+              }
+            ],
+            "Language": {
+              "languageId": "9",
+              "name": "updated new language 2"
+            }
+          }
+        ]
+      }
+    },
+    "updatedCategory": {
+      "data": {
+        "updatedCategory": [
+          {
+            "categoryId": "9",
+            "name": "Foreign",
+            "Films": [
+              {
+                "filmId": "1002",
+                "title": "updated title 2"
+              },
+              {
+                "filmId": "984",
+                "title": "WONDERFUL DROP"
+              },
+              {
+                "filmId": "971",
+                "title": "WHALE BIKINI"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "createdCategory": {
+      "data": {
+        "createdCategory": [
+          {
+            "categoryId": "21",
+            "name": "Added new category",
+            "Films": [
+              {
+                "filmId": "1002",
+                "title": "updated title 2"
+              }
+            ]
+          },
+          {
+            "categoryId": "22",
+            "name": "Added other new category",
+            "Films": [
+              {
+                "filmId": "1002",
+                "title": "updated title 2"
+              }
+            ]
+          }
+        ]
+      }
     }
   }
 }

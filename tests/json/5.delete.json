@@ -3,9 +3,20 @@
     "data": {
       "deleteFilm": [
         {
-          "filmId": "1001"
+          "filmId": "1002"
         }
       ]
+    }
+  },
+  "publications": {
+    "deletedFilm": {
+      "data": {
+        "deletedFilm": [
+          {
+            "filmId": "1002"
+          }
+        ]
+      }
     }
   }
 }

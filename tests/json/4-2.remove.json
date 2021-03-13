@@ -124,5 +124,166 @@
         }
       ]
     }
+  },
+  "publications": {
+    "updatedCategory": {
+      "data": {
+        "updatedCategory": [
+          {
+            "categoryId": "11",
+            "name": "Horror",
+            "Films": [
+              {
+                "filmId": "998",
+                "title": "ZHIVAGO CORE"
+              },
+              {
+                "filmId": "995",
+                "title": "YENTL IDAHO"
+              },
+              {
+                "filmId": "990",
+                "title": "WORLD LEATHERNECKS"
+              }
+            ]
+          },
+          {
+            "categoryId": "12",
+            "name": "Music",
+            "Films": [
+              {
+                "filmId": "997",
+                "title": "YOUTH KICK"
+              },
+              {
+                "filmId": "987",
+                "title": "WORDS HUNTER"
+              },
+              {
+                "filmId": "983",
+                "title": "WON DARES"
+              }
+            ]
+          },
+          {
+            "categoryId": "13",
+            "name": "New",
+            "Films": [
+              {
+                "filmId": "994",
+                "title": "WYOMING STORM"
+              },
+              {
+                "filmId": "974",
+                "title": "WILD APOLLO"
+              },
+              {
+                "filmId": "954",
+                "title": "WAKE JAWS"
+              }
+            ]
+          },
+          {
+            "categoryId": "14",
+            "name": "Sci-Fi",
+            "Films": [
+              {
+                "filmId": "985",
+                "title": "WONDERLAND CHRISTMAS"
+              },
+              {
+                "filmId": "972",
+                "title": "WHISPERER GIANT"
+              },
+              {
+                "filmId": "967",
+                "title": "WEEKEND PERSONAL"
+              }
+            ]
+          },
+          {
+            "categoryId": "15",
+            "name": "Sports",
+            "Films": [
+              {
+                "filmId": "940",
+                "title": "VICTORY ACADEMY"
+              },
+              {
+                "filmId": "917",
+                "title": "TUXEDO MILE"
+              },
+              {
+                "filmId": "902",
+                "title": "TRADING PINOCCHIO"
+              }
+            ]
+          },
+          {
+            "categoryId": "16",
+            "name": "Travel",
+            "Films": [
+              {
+                "filmId": "989",
+                "title": "WORKING MICROCOSMOS"
+              },
+              {
+                "filmId": "988",
+                "title": "WORKER TARZAN"
+              },
+              {
+                "filmId": "981",
+                "title": "WOLVES DESIRE"
+              }
+            ]
+          },
+          {
+            "categoryId": "17",
+            "name": "initial new category",
+            "Films": []
+          },
+          {
+            "categoryId": "18",
+            "name": "initial other category",
+            "Films": []
+          },
+          {
+            "categoryId": "19",
+            "name": "Updated new category",
+            "Films": []
+          },
+          {
+            "categoryId": "20",
+            "name": "Updated other new category",
+            "Films": []
+          },
+          {
+            "categoryId": "21",
+            "name": "Added new category",
+            "Films": []
+          },
+          {
+            "categoryId": "22",
+            "name": "Added other new category",
+            "Films": []
+          }
+        ]
+      }
+    },
+    "updatedFilm": {
+      "data": {
+        "updatedFilm": [
+          {
+            "filmId": "1002",
+            "title": "updated title 3",
+            "Categories": [],
+            "Language": {
+              "languageId": "10",
+              "name": "updated new language 3"
+            }
+          }
+        ]
+      }
+    }
   }
 }

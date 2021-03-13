@@ -3,8 +3,16 @@ mutation {
     title: "initial title"
     # a new language
     Language: { 
-    	name: "initial language" 
+    	name: "initial language"
+      Films: [{
+        title: "New Film"
+      }]
   	}
+    # new one to one
+    FilmText: {
+      title: "B"
+      description: "autre"
+    }
     # an existing language
     OriginalLanguage: { 
       languageId: 1
@@ -27,6 +35,10 @@ mutation {
   }, atomic: true) {
     filmId
     title
+    FilmText {
+      filmId
+      title
+    }
     Categories {
       categoryId
       name

@@ -3,7 +3,7 @@ mutation {
     query: { where: { categoryId: { _gtOp: 10 } } }, 
     input: {
       removeFilms: [
-        { filmId: 1001 }
+        { filmId: 1002 }
       ]
     }) {
     categoryId

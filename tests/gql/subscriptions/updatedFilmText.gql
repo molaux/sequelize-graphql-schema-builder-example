@@ -1,0 +1,9 @@
+subscription {
+  updatedFilmText {
+    filmId
+    title
+    Film {
+      filmId
+    }
+  }
+}

@@ -3,8 +3,12 @@
     "data": {
       "updateFilm": [
         {
-          "filmId": "1001",
+          "filmId": "1002",
           "title": "updated title",
+          "FilmText": {
+            "filmId": "1002",
+            "title": "B"
+          },
           "Categories": [
             {
               "categoryId": "16",
@@ -29,6 +33,147 @@
           }
         }
       ]
+    }
+  },
+  "publications": {
+    "updatedLanguage": {
+      "data": {
+        "updatedLanguage": [
+          {
+            "languageId": "2",
+            "name": "Italian",
+            "Films": [],
+            "OriginalLanguageFilms": [
+              {
+                "filmId": "1002",
+                "title": "updated title"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "createdLanguage": {
+      "data": {
+        "createdLanguage": [
+          {
+            "languageId": "8",
+            "name": "updated new language",
+            "Films": [
+              {
+                "title": "updated title"
+              }
+            ],
+            "OriginalLanguageFilms": []
+          }
+        ]
+      }
+    },
+    "updatedFilm": {
+      "data": {
+        "updatedFilm": [
+          {
+            "filmId": "1002",
+            "title": "updated title",
+            "Categories": [
+              {
+                "categoryId": "16",
+                "name": "Travel"
+              },
+              {
+                "categoryId": "19",
+                "name": "Updated new category"
+              },
+              {
+                "categoryId": "20",
+                "name": "Updated other new category"
+              }
+            ],
+            "Language": {
+              "languageId": "8",
+              "name": "updated new language"
+            }
+          }
+        ]
+      }
+    },
+    "updatedCategory": {
+      "data": {
+        "updatedCategory": [
+          {
+            "categoryId": "14",
+            "name": "Sci-Fi",
+            "Films": [
+              {
+                "filmId": "985",
+                "title": "WONDERLAND CHRISTMAS"
+              },
+              {
+                "filmId": "972",
+                "title": "WHISPERER GIANT"
+              },
+              {
+                "filmId": "967",
+                "title": "WEEKEND PERSONAL"
+              }
+            ]
+          },
+          {
+            "categoryId": "16",
+            "name": "Travel",
+            "Films": [
+              {
+                "filmId": "1002",
+                "title": "updated title"
+              },
+              {
+                "filmId": "989",
+                "title": "WORKING MICROCOSMOS"
+              },
+              {
+                "filmId": "988",
+                "title": "WORKER TARZAN"
+              }
+            ]
+          },
+          {
+            "categoryId": "17",
+            "name": "initial new category",
+            "Films": []
+          },
+          {
+            "categoryId": "18",
+            "name": "initial other category",
+            "Films": []
+          }
+        ]
+      }
+    },
+    "createdCategory": {
+      "data": {
+        "createdCategory": [
+          {
+            "categoryId": "19",
+            "name": "Updated new category",
+            "Films": [
+              {
+                "filmId": "1002",
+                "title": "updated title"
+              }
+            ]
+          },
+          {
+            "categoryId": "20",
+            "name": "Updated other new category",
+            "Films": [
+              {
+                "filmId": "1002",
+                "title": "updated title"
+              }
+            ]
+          }
+        ]
+      }
     }
   }
 }

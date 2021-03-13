@@ -2,8 +2,12 @@
   "response": {
     "data": {
       "createFilm": {
-        "filmId": "1001",
+        "filmId": "1002",
         "title": "initial title",
+        "FilmText": {
+          "filmId": "1002",
+          "title": "B"
+        },
         "Categories": [
           {
             "categoryId": "14",
@@ -38,7 +42,7 @@
             "name": "Sci-Fi",
             "Films": [
               {
-                "filmId": "1001",
+                "filmId": "1002",
                 "title": "initial title"
               },
               {
@@ -62,7 +66,7 @@
             "name": "initial new category",
             "Films": [
               {
-                "filmId": "1001",
+                "filmId": "1002",
                 "title": "initial title"
               }
             ]
@@ -72,7 +76,7 @@
             "name": "initial other category",
             "Films": [
               {
-                "filmId": "1001",
+                "filmId": "1002",
                 "title": "initial title"
               }
             ]
@@ -85,6 +89,15 @@
         "createdFilm": [
           {
             "filmId": "1001",
+            "title": "New Film",
+            "Categories": [],
+            "Language": {
+              "languageId": "7",
+              "name": "initial language"
+            }
+          },
+          {
+            "filmId": "1002",
             "title": "initial title",
             "Categories": [
               {
@@ -103,6 +116,19 @@
             "Language": {
               "languageId": "7",
               "name": "initial language"
+            }
+          }
+        ]
+      }
+    },
+    "createdFilmText": {
+      "data": {
+        "createdFilmText": [
+          {
+            "filmId": "1002",
+            "title": "B",
+            "Film": {
+              "filmId": "1002"
             }
           }
         ]
@@ -130,7 +156,7 @@
             ],
             "OriginalLanguageFilms": [
               {
-                "filmId": "1001",
+                "filmId": "1002",
                 "title": "initial title"
               }
             ]
@@ -145,6 +171,9 @@
             "languageId": "7",
             "name": "initial language",
             "Films": [
+              {
+                "title": "New Film"
+              },
               {
                 "title": "initial title"
               }

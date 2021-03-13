@@ -1,5 +1,5 @@
 mutation {
-  updateFilm(query: { where: { filmId: 1001 } }, input: {
+  updateFilm(query: { where: { filmId: 1002 } }, input: {
     title: "updated title"
     # a new language
     Language: { 
@@ -27,6 +27,10 @@ mutation {
   }) {
     filmId
     title
+    FilmText {
+      filmId
+      title
+    }
     Categories {
       categoryId
       name
