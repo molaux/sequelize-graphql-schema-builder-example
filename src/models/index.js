@@ -48,14 +48,15 @@ const loadModels = async () => {
       ])
       )
     ).then(modules => modules.reduce((o, [module, extend]) => {
-      const model = module.default(sequelize, extend.default(sequelize))
+      const model = module.default(sequelize, extend.default.definition?.(sequelize) ?? ((definition) => definition))
+      model.extraAssociate = extend.default.associate?.(sequelize)
+
       return ({ ...o, [model.name]: model })
     }, {}))
 
     Object.keys(models).forEach(modelName => {
-      if (models[modelName].associate) {
-        models[modelName].associate(models)
-      }
+      models[modelName].associate?.()
+      models[modelName].extraAssociate?.(models[modelName])
     })
 
     dbs[dbName] = sequelize
