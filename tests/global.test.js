@@ -54,10 +54,9 @@ for (const requestFile of requestsFiles) {
   const [n, task] = requestFile.split('.')
   const query = fs.readFileSync(path.join(__dirname, 'gql', requestFile), 'utf8')
   const expected = JSON.parse(fs.readFileSync(path.join(__dirname, 'json', `${n}.${task}.json`), 'utf8'))
-
-  test(`${task} request ${n}`, async () => {
-    const publications = Promise.all(Object.keys(expected.publications ?? []).map((subscription) => new Promise((resolve) => {
-      // console.log(n, task, 'waiting iterator', subscription)
+  let publications
+  test(`${task} (${n}) > query > response`, async () => {
+    publications = Promise.all(Object.keys(expected.publications ?? []).map((subscription) => new Promise((resolve) => {
       return asyncIterators[subscription].next().then((response) => resolve([response.value, expected.publications[subscription]]))
     }
     )))
@@ -68,43 +67,36 @@ for (const requestFile of requestsFiles) {
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(200)
+    expect(result.body).toBeInstanceOf(Object)
+    expect(result.body).toEqual(expected.response)
+  })
 
-    // console.log(n, task, 'waiting iterators')
-    await publications
-
-    // console.log(n, task, 'cheching iterators')
-    for (const [response, expected] of await publications) {
+  let i = 0
+  for (const publication in expected.publications) {
+    test(`${task} (${n}) > subscription > ${publication} > response`, async () => {
+      const [response, expected] = (await publications)[i++]
       expect(response).toEqual(expected)
-    }
+    })
+  }
+  
 
-    // console.log(n, task, 'waiting no more')
+  test(`${task} (${n}) > subscription > all > have no additional publication`, async () => {
     const noMore = await new Promise((resolve) => {
       setTimeout(() => Object.keys(asyncIterators).map((subscription) => {
         asyncIterators[subscription].return()
         return resolve(true)
       }), 200)
 
-      Promise.all(Object.keys(asyncIterators).map((subscription) => new Promise((resolve) => {
-        // console.log(n, task, 'waiting no more iterator', subscription)
-        return asyncIterators[subscription].next().then((response) => {
-          // console.log(n, task, subscription, 'has more', response)
-          resolve(response)
-        })
-      }
+      Promise.all(Object.keys(asyncIterators).map((subscription) => new Promise((resolve) =>
+        asyncIterators[subscription].next().then((response) => resolve(response))
       ))).then(() => resolve(false))
     })
 
-    // console.log(n, task, 'checking no more')
     expect(noMore).toEqual(true)
 
-    // console.log(n, task, 'reinit iterator')
     for (const name in asyncIterators) {
       asyncIterators[name] = pubSub.asyncIterator(name)
     }
-
-    expect(result.body).toBeInstanceOf(Object)
-    expect(result.body).toEqual(expected.response)
-
-    return [result, publications]
   })
+   
 }
