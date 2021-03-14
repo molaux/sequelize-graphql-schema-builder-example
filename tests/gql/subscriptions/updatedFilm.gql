@@ -1,0 +1,14 @@
+subscription {
+  updatedFilm {
+    filmId
+    title
+    Categories {
+      categoryId
+      name
+    }
+    Language {
+      languageId
+      name
+    }
+  }
+}

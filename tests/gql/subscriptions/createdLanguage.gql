@@ -1,0 +1,13 @@
+subscription {
+  createdLanguage {
+    languageId
+    name
+    Films {
+      title
+    }
+    OriginalLanguageFilms(query: { limit: 3, order: [["filmId", "DESC"]] }, dissociate: true) {
+      filmId
+      title
+    }
+  }
+}

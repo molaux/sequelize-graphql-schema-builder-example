@@ -1,6 +1,6 @@
 {
   "author": "Marc-Olivier Laux <marc-olivier@matlaux.net> (https://github.com/molaux)",
-  "license": "ISC",
+  "license": "MIT",
   "description": "Sequelize GraphQL Schema Builder demonstration example",
   "keywords": [],
   "type": "module",
@@ -9,8 +9,10 @@
   "main": "src/server.js",
   "dependencies": {
     "@molaux/sequelize-graphql-schema-builder": "^2.0.0-alpha",
-    "apollo-server": "^2.19.2",
-    "apollo-server-express": "^2.19.2",
+    "apollo-client": "^2.6.10",
+    "apollo-link-ws": "^1.0.20",
+    "apollo-server": "^2.21.1",
+    "apollo-server-express": "^2.21.1",
     "bcrypt": "^5.0.0",
     "colors": "^1.4.0",
     "dotenv": "^8.2.0",
@@ -48,6 +50,11 @@
     "start-dev": "nodemon --experimental-specifier-resolution=node --max-old-space-size=8192 --preserve-symlinks --trace-warnings src/server.js"
   },
   "nodemonConfig": {
-    "ext": "js,cjs,mjs,coffee,litcoffee,json,json5"
+    "ext": "js,cjs,mjs,coffee,litcoffee,json,json5",
+    "watch": [
+      "src",
+      "config",
+      "package.json"
+    ]
   }
 }

@@ -1,9 +1,22 @@
 {
-  "data": {
-    "deleteFilm": [
-      {
-        "filmId": "1001"
+  "response": {
+    "data": {
+      "deleteFilm": [
+        {
+          "filmId": "1002"
+        }
+      ]
+    }
+  },
+  "publications": {
+    "deletedFilm": {
+      "data": {
+        "deletedFilm": [
+          {
+            "filmId": "1002"
+          }
+        ]
       }
-    ]
+    }
   }
 }

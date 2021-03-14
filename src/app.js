@@ -8,11 +8,16 @@ import loadModels from './models'
 import apolloServerExpress from 'apollo-server-express'
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
+import graphqlSubscriptions from 'graphql-subscriptions'
+import jwt from 'jsonwebtoken'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 dotenv.config()
+
+const { PubSub } = graphqlSubscriptions
+const pubSub = new PubSub()
 
 const { ApolloServer } = apolloServerExpress
 
@@ -36,8 +41,27 @@ export default async () => {
       ...(connection ? connection.context : {}),
       databases,
       req,
+      pubSub,
       user: req ? req.user : connection ? connection.context.user : null
-    })
+    }),
+    subscriptions: {
+      path: process.env.API_APOLLO_PATH,
+      onConnect: (connectionParams, webSocket) => {
+        if ((process.env.NODE_ENV || 'development') !== 'production' ||
+          connectionParams.authToken) {
+          return Promise.resolve({
+            user:
+              (process.env.NODE_ENV || 'development') !== 'production'
+                ? {
+                    mock: true
+                  }
+                : jwt.verify(connectionParams.authToken, process.env.JWT_SECRET)
+          })
+        }
+
+        throw new Error('Missing auth token!')
+      }
+    }
   })
   const app = express()
 
@@ -71,5 +95,5 @@ export default async () => {
 
   apolloServer.applyMiddleware({ app, path: process.env.API_APOLLO_PATH })
 
-  return app
+  return { app, apolloServer }
 }

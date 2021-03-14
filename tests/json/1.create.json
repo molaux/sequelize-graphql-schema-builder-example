@@ -1,29 +1,186 @@
 {
-  "data": {
-    "createFilm": {
-      "filmId": "1001",
-      "title": "initial title",
-      "Categories": [
-        {
-          "categoryId": "14",
-          "name": "Sci-Fi"
+  "response": {
+    "data": {
+      "createFilm": {
+        "filmId": "1002",
+        "title": "initial title",
+        "FilmText": {
+          "filmId": "1002",
+          "title": "B"
         },
-        {
-          "categoryId": "17",
-          "name": "initial new category"
+        "Categories": [
+          {
+            "categoryId": "14",
+            "name": "Sci-Fi"
+          },
+          {
+            "categoryId": "17",
+            "name": "initial new category"
+          },
+          {
+            "categoryId": "18",
+            "name": "initial other category"
+          }
+        ],
+        "Language": {
+          "languageId": "7",
+          "name": "initial language"
         },
-        {
-          "categoryId": "18",
-          "name": "initial other category"
+        "OriginalLanguage": {
+          "languageId": "1",
+          "name": "English"
         }
-      ],
-      "Language": {
-        "languageId": "7",
-        "name": "initial language"
-      },
-      "OriginalLanguage": {
-        "languageId": "1",
-        "name": "English"
+      }
+    }
+  },
+  "publications": {
+    "updatedCategory": {
+      "data": {
+        "updatedCategory": [
+          {
+            "categoryId": "14",
+            "name": "Sci-Fi",
+            "Films": [
+              {
+                "filmId": "1002",
+                "title": "initial title"
+              },
+              {
+                "filmId": "985",
+                "title": "WONDERLAND CHRISTMAS"
+              },
+              {
+                "filmId": "972",
+                "title": "WHISPERER GIANT"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "createdCategory": {
+      "data": {
+        "createdCategory": [
+          {
+            "categoryId": "17",
+            "name": "initial new category",
+            "Films": [
+              {
+                "filmId": "1002",
+                "title": "initial title"
+              }
+            ]
+          },
+          {
+            "categoryId": "18",
+            "name": "initial other category",
+            "Films": [
+              {
+                "filmId": "1002",
+                "title": "initial title"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "createdFilm": {
+      "data": {
+        "createdFilm": [
+          {
+            "filmId": "1001",
+            "title": "New Film",
+            "Categories": [],
+            "Language": {
+              "languageId": "7",
+              "name": "initial language"
+            }
+          },
+          {
+            "filmId": "1002",
+            "title": "initial title",
+            "Categories": [
+              {
+                "categoryId": "14",
+                "name": "Sci-Fi"
+              },
+              {
+                "categoryId": "17",
+                "name": "initial new category"
+              },
+              {
+                "categoryId": "18",
+                "name": "initial other category"
+              }
+            ],
+            "Language": {
+              "languageId": "7",
+              "name": "initial language"
+            }
+          }
+        ]
+      }
+    },
+    "createdFilmText": {
+      "data": {
+        "createdFilmText": [
+          {
+            "filmId": "1002",
+            "title": "B",
+            "Film": {
+              "filmId": "1002"
+            }
+          }
+        ]
+      }
+    },
+    "updatedLanguage": {
+      "data": {
+        "updatedLanguage": [
+          {
+            "languageId": "1",
+            "name": "English",
+            "Films": [
+              {
+                "filmId": "1000",
+                "title": "ZORRO ARK"
+              },
+              {
+                "filmId": "999",
+                "title": "ZOOLANDER FICTION"
+              },
+              {
+                "filmId": "998",
+                "title": "ZHIVAGO CORE"
+              }
+            ],
+            "OriginalLanguageFilms": [
+              {
+                "filmId": "1002",
+                "title": "initial title"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "createdLanguage": {
+      "data": {
+        "createdLanguage": [
+          {
+            "languageId": "7",
+            "name": "initial language",
+            "Films": [
+              {
+                "title": "New Film"
+              },
+              {
+                "title": "initial title"
+              }
+            ],
+            "OriginalLanguageFilms": []
+          }
+        ]
       }
     }
   }

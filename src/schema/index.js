@@ -52,7 +52,8 @@ const schema = dbs => {
   const {
     // modelsTypes,
     queries,
-    mutations
+    mutations,
+    subscriptions
   } = schemaBuilder(dbs.sakila, {
     extraModelFields: (...args) => ({
       ...countryExtraFields(...args)
@@ -84,6 +85,10 @@ const schema = dbs => {
           resolve: () => packageJson.version
         }
       })
+    }),
+    subscription: new GraphQLObjectType({
+      name: 'RootSubscriptionType',
+      fields: () => securizeAllResolvers(subscriptions)
     }),
     mutation: new GraphQLObjectType({
       name: 'RootMutationType',

@@ -1,0 +1,9 @@
+subscription {
+  createdFilmText {
+    filmId
+    title
+    Film {
+      filmId
+    }
+  }
+}
