@@ -1,0 +1,10 @@
+query {
+  Films {
+    filmId
+    title
+    OriginalLanguage(query: { required: true }) {
+      languageId
+      name
+    }
+  }
+}

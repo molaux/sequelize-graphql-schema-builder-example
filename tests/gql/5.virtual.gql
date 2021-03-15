@@ -1,0 +1,22 @@
+query {
+  Staffs {
+    firstName
+    fullName
+    Store { 
+      ManagerStaff {
+      	firstName
+      }
+      Staffs {
+        firstName
+      }
+    }
+    ManagerStaffStores { 
+      Staffs {
+        fullName
+      }
+    }
+    Address {
+      address
+    }
+  }
+}

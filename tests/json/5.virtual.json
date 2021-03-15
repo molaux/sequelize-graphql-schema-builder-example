@@ -1,0 +1,60 @@
+{
+  "response": {
+    "data": {
+      "Staffs": [
+        {
+          "firstName": "Mike",
+          "fullName": "Mike HILLYER",
+          "Store": {
+            "ManagerStaff": {
+              "firstName": "Mike"
+            },
+            "Staffs": [
+              {
+                "firstName": "Mike"
+              }
+            ]
+          },
+          "ManagerStaffStores": [
+            {
+              "Staffs": [
+                {
+                  "fullName": "Mike HILLYER"
+                }
+              ]
+            }
+          ],
+          "Address": {
+            "address": "23 Workhaven Lane"
+          }
+        },
+        {
+          "firstName": "Jon",
+          "fullName": "Jon STEPHENS",
+          "Store": {
+            "ManagerStaff": {
+              "firstName": "Jon"
+            },
+            "Staffs": [
+              {
+                "firstName": "Jon"
+              }
+            ]
+          },
+          "ManagerStaffStores": [
+            {
+              "Staffs": [
+                {
+                  "fullName": "Jon STEPHENS"
+                }
+              ]
+            }
+          ],
+          "Address": {
+            "address": "1411 Lillydale Drive"
+          }
+        }
+      ]
+    }
+  }
+}

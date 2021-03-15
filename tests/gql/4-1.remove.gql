@@ -1,37 +1,15 @@
 mutation {
-  updateFilm(query: { where: { filmId: 1002 } }, input: {
-    title: "updated title 3"
-    Language: { 
-    	name: "updated new language 3" 
-  	}
-    OriginalLanguage: { 
-      languageId: 1
-    }
-    removeCategories: [
-      { 
-        categoryId: 16
-      }
-      {
-        categoryId: 9
-      }
-      { 
-        categoryId: 23
-      }
-    ]
-  }) {
-    filmId
-    title
-    Categories {
-      categoryId
-      name
-    }
-    Language {
-      languageId
-      name
-    }
-    OriginalLanguage {
-      languageId
-      name
+  updateCategory(
+    query: { where: { categoryId: { _gtOp: 10 } } }, 
+    input: {
+      removeFilms: [
+        { filmId: 1002 }
+      ]
+    }) {
+    categoryId
+    name
+    Films(query: { order: [[ "filmId", "DESC" ]], limit: 3 }, dissociate: true) {
+      filmId
     }
   }
 }

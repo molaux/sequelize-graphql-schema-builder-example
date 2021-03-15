@@ -1,0 +1,6 @@
+query {
+  Countries(query: { limit: 3 }) {
+    country
+    infos
+  }
+}
