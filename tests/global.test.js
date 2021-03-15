@@ -69,77 +69,79 @@ for (const requestFile of requestsFiles) {
   let unexpectedPublicationsPromises = []
   let unexpectedPublications
   expected.publications = expected.publications ?? {}
-  test(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`, 'query', 'default', 'response'), async () => {
-    expectedPublicationsPromises = Object.keys(expected.publications).map((subscription) => new Promise((resolve) => {
-      const first = setTimeout(() => {
-        asyncIterators[subscription].return()
-        resolve({ subscription, response: {}, expected: expected.publications[subscription] })
-      }, 200)
-      asyncIterators[subscription].next().then((response) => {
-        clearTimeout(first)
-        unexpectedPublicationsPromises.push(new Promise((resolve) => {
-          const second = setTimeout(() => {
+  describe(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`), () => {
+    test(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`, 'query', 'default', 'response'), async () => {
+      expectedPublicationsPromises = Object.keys(expected.publications).map((subscription) => new Promise((resolve) => {
+        const first = setTimeout(() => {
+          asyncIterators[subscription].return()
+          resolve({ subscription, response: {}, expected: expected.publications[subscription] })
+        }, 200)
+        asyncIterators[subscription].next().then((response) => {
+          clearTimeout(first)
+          unexpectedPublicationsPromises.push(new Promise((resolve) => {
+            const second = setTimeout(() => {
+              asyncIterators[subscription].return()
+              resolve({ subscription, response: {} })
+            }, 200)
+            asyncIterators[subscription].next()
+              .then((response) => {
+                clearTimeout(second)
+                asyncIterators[subscription].return()
+                resolve({ subscription, response: response.value })
+              })
+          }))
+          clearTimeout(first)
+          resolve({ subscription, response: response.value, expected: expected.publications[subscription] })
+        })
+      }))
+
+      unexpectedPublicationsPromises = Object.keys(asyncIterators)
+        .filter((subscription) => !(subscription in expected.publications))
+        .map((subscription) => new Promise((resolve) => {
+          const first = setTimeout(() => {
             asyncIterators[subscription].return()
             resolve({ subscription, response: {} })
           }, 200)
           asyncIterators[subscription].next()
             .then((response) => {
-              clearTimeout(second)
+              clearTimeout(first)
               asyncIterators[subscription].return()
               resolve({ subscription, response: response.value })
             })
         }))
-        clearTimeout(first)
-        resolve({ subscription, response: response.value, expected: expected.publications[subscription] })
+
+      const result = await request
+        .post(process.env.API_APOLLO_PATH)
+        .send({ query })
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+      expect(result.body).toBeInstanceOf(Object)
+      expect(result.body).toEqual(expected.response)
+
+      expectedPublications = (await Promise.all(expectedPublicationsPromises))
+        .reduce((o, { subscription, ...rest }) => ({ ...o, [subscription]: { subscription, ...rest } }), {})
+
+      unexpectedPublications = (await Promise.all(unexpectedPublicationsPromises))
+        .reduce((o, { subscription, ...rest }) => ({ ...o, [subscription]: { subscription, ...rest } }), {})
+
+      for (const name in asyncIterators) {
+        asyncIterators[name] = pubSub.asyncIterator(name)
+      }
+    })
+
+    for (const publication in expected.publications) {
+      test(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`, 'subscription', publication, 'response'), () => {
+        const { expected, response } = expectedPublications[publication]
+        expect(response).toEqual(expected)
       })
-    }))
+    }
 
-    unexpectedPublicationsPromises = Object.keys(asyncIterators)
-      .filter((subscription) => !(subscription in expected.publications))
-      .map((subscription) => new Promise((resolve) => {
-        const first = setTimeout(() => {
-          asyncIterators[subscription].return()
-          resolve({ subscription, response: {} })
-        }, 200)
-        asyncIterators[subscription].next()
-          .then((response) => {
-            clearTimeout(first)
-            asyncIterators[subscription].return()
-            resolve({ subscription, response: response.value })
-          })
-      }))
-
-    const result = await request
-      .post(process.env.API_APOLLO_PATH)
-      .send({ query })
-      .set('Accept', 'application/json')
-      .expect('Content-Type', /json/)
-      .expect(200)
-    expect(result.body).toBeInstanceOf(Object)
-    expect(result.body).toEqual(expected.response)
-
-    expectedPublications = (await Promise.all(expectedPublicationsPromises))
-      .reduce((o, { subscription, ...rest }) => ({ ...o, [subscription]: { subscription, ...rest } }), {})
-
-    unexpectedPublications = (await Promise.all(unexpectedPublicationsPromises))
-      .reduce((o, { subscription, ...rest }) => ({ ...o, [subscription]: { subscription, ...rest } }), {})
-
-    for (const name in asyncIterators) {
-      asyncIterators[name] = pubSub.asyncIterator(name)
+    for (const publication of subscriptions) {
+      test(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`, 'subscription', publication, 'no more'), () => {
+        const { response } = unexpectedPublications[publication]
+        expect(response).toEqual({})
+      })
     }
   })
-
-  for (const publication in expected.publications) {
-    test(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`, 'subscription', publication, 'response'), () => {
-      const { expected, response } = expectedPublications[publication]
-      expect(response).toEqual(expected)
-    })
-  }
-
-  for (const publication of subscriptions) {
-    test(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`, 'subscription', publication, 'no more'), () => {
-      const { response } = unexpectedPublications[publication]
-      expect(response).toEqual({})
-    })
-  }
 }
