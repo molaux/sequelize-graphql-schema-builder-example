@@ -75,7 +75,7 @@ for (const requestFile of requestsFiles) {
         const first = setTimeout(() => {
           asyncIterators[subscription].return()
           resolve({ subscription, response: {}, expected: expected.publications[subscription] })
-        }, 200)
+        }, 2000)
         asyncIterators[subscription].next().then((response) => {
           clearTimeout(first)
           unexpectedPublicationsPromises.push(new Promise((resolve) => {
