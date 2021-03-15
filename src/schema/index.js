@@ -77,7 +77,7 @@ const schema = dbs => {
             }
           },
           ...queries
-          // ... otherQueries
+          // ...otherQueries
         }),
         // non secured query
         version: {
