@@ -15,7 +15,9 @@ const fixedStringWidth = (string, n) => string.length < n
   ? string.concat(...Array.from({ length: n - string.length }, () => ' '))
   : string
 
-const Breadcrumb = (widths) => (...args) => args.map((arg, i) => fixedStringWidth(arg, widths[i] ?? 0)).join(' > ')
+const Breadcrumb = (widths) => (...args) => args
+  .map((arg, i) => fixedStringWidth(arg, widths[i] ?? 0))
+  .join(' › ')
 
 let request
 let subscribe
@@ -26,7 +28,7 @@ const pubSub = new PubSub()
 const subscriptionsFiles = fs
   .readdirSync(path.join(__dirname, 'gql', 'subscriptions'))
 
-const breadcrumb = Breadcrumb([12, 12, 15, 10])
+const breadcrumb = Breadcrumb([12, 15, 10])
 const subscriptions = subscriptionsFiles
   .map((fileName) => fileName.split('.')[0])
 
@@ -70,10 +72,11 @@ for (const requestFile of requestsFiles) {
   let unexpectedPublications
   expected.publications = expected.publications ?? {}
   describe(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`), () => {
-    test(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`, 'query', 'default', 'response'), async () => {
+    test(breadcrumb('query', 'default', 'response'), async () => {
       expectedPublicationsPromises = Object.keys(expected.publications).map((subscription) => new Promise((resolve) => {
         const first = setTimeout(() => {
           asyncIterators[subscription].return()
+          unexpectedPublicationsPromises.push(Promise.resolve({ subscription, response: {} }))
           resolve({ subscription, response: {}, expected: expected.publications[subscription] })
         }, 2000)
         asyncIterators[subscription].next().then((response) => {
@@ -110,14 +113,12 @@ for (const requestFile of requestsFiles) {
             })
         }))
 
-      const result = await request
+      const resultPromise = request
         .post(process.env.API_APOLLO_PATH)
         .send({ query })
         .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(200)
-      expect(result.body).toBeInstanceOf(Object)
-      expect(result.body).toEqual(expected.response)
+
+      const result = await resultPromise
 
       expectedPublications = (await Promise.all(expectedPublicationsPromises))
         .reduce((o, { subscription, ...rest }) => ({ ...o, [subscription]: { subscription, ...rest } }), {})
@@ -128,17 +129,25 @@ for (const requestFile of requestsFiles) {
       for (const name in asyncIterators) {
         asyncIterators[name] = pubSub.asyncIterator(name)
       }
+
+      await resultPromise
+        .expect('Content-Type', /json/)
+        .expect(200)
+
+      expect(result.header['content-type']).toMatch(/application\/json/)
+      expect(result.body).toBeInstanceOf(Object)
+      expect(result.body).toEqual(expected.response)
     })
 
     for (const publication in expected.publications) {
-      test(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`, 'subscription', publication, 'response'), () => {
+      test(breadcrumb('subscription', publication, 'response'), () => {
         const { expected, response } = expectedPublications[publication]
         expect(response).toEqual(expected)
       })
     }
 
     for (const publication of subscriptions) {
-      test(breadcrumb(`${fixedStringWidth(`[${n}]`, 5)} ${task}`, 'subscription', publication, 'no more'), () => {
+      test(breadcrumb('subscription', publication, 'no more'), () => {
         const { response } = unexpectedPublications[publication]
         expect(response).toEqual({})
       })
