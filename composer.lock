@@ -167,7 +167,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/molaux/node-exporter.git",
-                "reference": "88e00fe9cb7064e06d347408f784d37479a3d5af"
+                "reference": "c6578d4c3bbb0fd455e19083dff58329a829a243"
             },
             "require": {
                 "mysql-workbench-schema-exporter/mysql-workbench-schema-exporter": "dev-master",
@@ -217,7 +217,7 @@
                 "mysql workbench",
                 "sequelizejs"
             ],
-            "time": "2021-03-09T16:03:11+00:00"
+            "time": "2021-04-02T08:55:47+00:00"
         }
     ],
     "aliases": [],
