@@ -4,9 +4,6 @@ mutation {
     # a new language
     Language: { 
     	name: "initial language"
-      Films: [{
-        title: "New Film"
-      }]
   	}
     # new one to one
     FilmText: {

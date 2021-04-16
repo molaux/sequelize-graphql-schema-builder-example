@@ -3,7 +3,7 @@
     "data": {
       "updateFilm": [
         {
-          "filmId": "1002",
+          "filmId": "1001",
           "title": "updated title 2",
           "Categories": [
             {
@@ -66,7 +66,7 @@
             ],
             "OriginalLanguageFilms": [
               {
-                "filmId": "1002",
+                "filmId": "1001",
                 "title": "updated title 2"
               }
             ]
@@ -94,7 +94,7 @@
       "data": {
         "updatedFilm": [
           {
-            "filmId": "1002",
+            "filmId": "1001",
             "title": "updated title 2",
             "Categories": [
               {
@@ -138,7 +138,7 @@
             "name": "Foreign",
             "Films": [
               {
-                "filmId": "1002",
+                "filmId": "1001",
                 "title": "updated title 2"
               },
               {
@@ -162,7 +162,7 @@
             "name": "Added new category",
             "Films": [
               {
-                "filmId": "1002",
+                "filmId": "1001",
                 "title": "updated title 2"
               }
             ]
@@ -172,7 +172,7 @@
             "name": "Added other new category",
             "Films": [
               {
-                "filmId": "1002",
+                "filmId": "1001",
                 "title": "updated title 2"
               }
             ]

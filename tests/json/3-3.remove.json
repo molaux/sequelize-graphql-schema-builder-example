@@ -3,7 +3,7 @@
     "data": {
       "updateFilm": [
         {
-          "filmId": "1002",
+          "filmId": "1001",
           "title": "updated title 3",
           "Categories": [
             {
@@ -40,7 +40,7 @@
       "data": {
         "updatedFilm": [
           {
-            "filmId": "1002",
+            "filmId": "1001",
             "title": "updated title 3",
             "Categories": [
               {
@@ -106,7 +106,7 @@
             ],
             "OriginalLanguageFilms": [
               {
-                "filmId": "1002",
+                "filmId": "1001",
                 "title": "updated title 3"
               }
             ]

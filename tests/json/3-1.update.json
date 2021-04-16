@@ -3,10 +3,10 @@
     "data": {
       "updateFilm": [
         {
-          "filmId": "1002",
+          "filmId": "1001",
           "title": "updated title",
           "FilmText": {
-            "filmId": "1002",
+            "filmId": "1001",
             "title": "B"
           },
           "Categories": [
@@ -45,7 +45,7 @@
             "Films": [],
             "OriginalLanguageFilms": [
               {
-                "filmId": "1002",
+                "filmId": "1001",
                 "title": "updated title"
               }
             ]
@@ -73,7 +73,7 @@
       "data": {
         "updatedFilm": [
           {
-            "filmId": "1002",
+            "filmId": "1001",
             "title": "updated title",
             "Categories": [
               {
@@ -123,7 +123,7 @@
             "name": "Travel",
             "Films": [
               {
-                "filmId": "1002",
+                "filmId": "1001",
                 "title": "updated title"
               },
               {
@@ -157,7 +157,7 @@
             "name": "Updated new category",
             "Films": [
               {
-                "filmId": "1002",
+                "filmId": "1001",
                 "title": "updated title"
               }
             ]
@@ -167,7 +167,7 @@
             "name": "Updated other new category",
             "Films": [
               {
-                "filmId": "1002",
+                "filmId": "1001",
                 "title": "updated title"
               }
             ]
