@@ -36,9 +36,9 @@ beforeAll(async () => {
   const server = await app()
 
   httpServer = http.createServer(server.app)
-  server.apolloServer.installSubscriptionHandlers(httpServer)
+  const subscriptionServer = server.buildSubscriptionServer(httpServer)
   await new Promise(resolve => httpServer.listen({ host: process.env.HOST, port: process.env.PORT }, () => resolve()))
-  wsClient = getWsClient(`ws://${process.env.HOST}:${process.env.PORT}${server.apolloServer.subscriptionsPath}`)
+  wsClient = getWsClient(`ws://${process.env.HOST}:${process.env.PORT}${subscriptionServer.wsServer.options.path}`)
   subscribe = subscribeFactory(getWsLink(wsClient))
 
   for (const fileName of subscriptionsFiles) {

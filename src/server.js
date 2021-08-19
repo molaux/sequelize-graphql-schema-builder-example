@@ -18,23 +18,23 @@ const credentials = {
 const startServer = async () => {
   console.log(`Server starting in ${colors.red(process.env.NODE_ENV || 'development')} mode...`)
 
-  const { app, apolloServer } = await appBuilder()
+  const { app, apolloServer, buildSubscriptionServer } = await appBuilder()
 
   if (SECURED) {
     const httpsServer = https.createServer(credentials, app)
-    apolloServer.installSubscriptionHandlers(httpsServer)
+    const subscriptionServer = buildSubscriptionServer(httpsServer)
 
     httpsServer.listen({ host: process.env.HOST, port: process.env.PORT }, () => {
       console.log(`  ${colors.brightGreen('✱')} ${colors.grey('Graphql API ready at')}           ${colors.brightGreen('https')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(apolloServer.graphqlPath)}`)
-      console.log(`  ${colors.brightGreen('✱')} ${colors.grey('Graphql subscriptions ready at')} ${colors.brightGreen('wss')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(apolloServer.subscriptionsPath)}`)
+      console.log(`  ${colors.brightGreen('✱')} ${colors.grey('Graphql subscriptions ready at')} ${colors.brightGreen('wss')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(subscriptionServer.wsServer.options.path)}`)
     })
   } else {
     const httpServer = http.createServer(app)
-    apolloServer.installSubscriptionHandlers(httpServer)
+    const subscriptionServer = buildSubscriptionServer(httpServer)
 
     httpServer.listen({ host: process.env.HOST, port: process.env.PORT }, () => {
       console.log(`  ${colors.yellow('✱')} ${colors.grey('Graphql API ready at')}           ${colors.yellow('http')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(apolloServer.graphqlPath)}`)
-      console.log(`  ${colors.yellow('✱')} ${colors.grey('Graphql subscriptions ready at')} ${colors.yellow('ws')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(apolloServer.subscriptionsPath)}`)
+      console.log(`  ${colors.yellow('✱')} ${colors.grey('Graphql subscriptions ready at')} ${colors.yellow('ws')}://${colors.brightWhite(process.env.HOST)}:${colors.brightWhite(process.env.PORT)}${colors.brightCyan(subscriptionServer.wsServer.options.path)}`)
     })
   }
 

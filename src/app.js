@@ -10,6 +10,11 @@ import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 import graphqlSubscriptions from 'graphql-subscriptions'
 import jwt from 'jsonwebtoken'
+import graphqlModule from "graphql"
+import sTWSodule from "subscriptions-transport-ws"
+
+const  { execute, subscribe } = graphqlModule
+const { SubscriptionServer } = sTWSodule
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -35,33 +40,16 @@ export default async () => {
   }
 
   console.log('Building Apollo server...')
+  const finalSchema = schema(databases)
   const apolloServer = new ApolloServer({
-    schema: schema(databases),
+    schema: finalSchema,
     context: ({ req, res, connection }) => ({ // add your own context here
       ...(connection ? connection.context : {}),
       databases,
       req,
       pubSub,
       user: req ? req.user : connection ? connection.context.user : null
-    }),
-    subscriptions: {
-      path: process.env.API_APOLLO_PATH,
-      onConnect: (connectionParams, webSocket) => {
-        if ((process.env.NODE_ENV || 'development') !== 'production' ||
-          connectionParams.authToken) {
-          return Promise.resolve({
-            user:
-              (process.env.NODE_ENV || 'development') !== 'production'
-                ? {
-                    mock: true
-                  }
-                : jwt.verify(connectionParams.authToken, process.env.JWT_SECRET)
-          })
-        }
-
-        throw new Error('Missing auth token!')
-      }
-    }
+    })
   })
   const app = express()
 
@@ -93,7 +81,39 @@ export default async () => {
     return next(err)
   })
 
+  await apolloServer.start()
   apolloServer.applyMiddleware({ app, path: process.env.API_APOLLO_PATH })
 
-  return { app, apolloServer }
+  const buildSubscriptionServer = server => SubscriptionServer.create({
+    schema: finalSchema,
+    execute,
+    subscribe,
+    onOperation: (message, params, webSocket) => {
+      return { ...params, context: { 
+        ...params.context,
+        databases,
+        pubSub
+      } }
+    },
+    onConnect: (connectionParams, webSocket) => {
+      if ((process.env.NODE_ENV || 'development') !== 'production' ||
+        connectionParams.authToken) {
+        return Promise.resolve({
+          user:
+            (process.env.NODE_ENV || 'development') !== 'production'
+              ? {
+                  mock: true
+                }
+              : jwt.verify(connectionParams.authToken, process.env.JWT_SECRET)
+        })
+      }
+
+      throw new Error('Missing auth token!')
+    }
+  }, {
+    server,
+    path: process.env.API_APOLLO_PATH,
+  })
+
+  return { app, apolloServer, buildSubscriptionServer }
 }
