@@ -10,10 +10,10 @@ import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 import graphqlSubscriptions from 'graphql-subscriptions'
 import jwt from 'jsonwebtoken'
-import graphqlModule from "graphql"
-import sTWSodule from "subscriptions-transport-ws"
+import graphqlModule from 'graphql'
+import sTWSodule from 'subscriptions-transport-ws'
 
-const  { execute, subscribe } = graphqlModule
+const { execute, subscribe } = graphqlModule
 const { SubscriptionServer } = sTWSodule
 
 const __filename = fileURLToPath(import.meta.url)
@@ -89,11 +89,14 @@ export default async () => {
     execute,
     subscribe,
     onOperation: (message, params, webSocket) => {
-      return { ...params, context: { 
-        ...params.context,
-        databases,
-        pubSub
-      } }
+      return {
+        ...params,
+        context: {
+          ...params.context,
+          databases,
+          pubSub
+        }
+      }
     },
     onConnect: (connectionParams, webSocket) => {
       if ((process.env.NODE_ENV || 'development') !== 'production' ||
@@ -112,7 +115,7 @@ export default async () => {
     }
   }, {
     server,
-    path: process.env.API_APOLLO_PATH,
+    path: process.env.API_APOLLO_PATH
   })
 
   return { app, apolloServer, buildSubscriptionServer }
