@@ -833,10 +833,10 @@
     semver "^7.3.4"
     tar "^6.1.0"
 
-"@molaux/sequelize-graphql-schema-builder@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@molaux/sequelize-graphql-schema-builder/-/sequelize-graphql-schema-builder-2.2.1.tgz#d8138d454fe9d61817bb017f17dbe74a58d78769"
-  integrity sha512-sYizvxXPIUAEPipjQcL4k0sL2vp5nuBA3QuDacwJlC+lH36Qdan+zDYhcI9s+Xeb+mvhlPPY54EsuFA+wt9zcQ==
+"@molaux/sequelize-graphql-schema-builder@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@molaux/sequelize-graphql-schema-builder/-/sequelize-graphql-schema-builder-2.2.3.tgz#4b776ab5a3497c4bf32674d7bf155e1b00f2f52c"
+  integrity sha512-pr8ka9w4Iy9kVCt60tV4l0ElKLbBTq3yxIZYT6eGPwo5LHdSPIZxJlpWbSFtX0EuOVe11m14qWX/jd9azxtLfA==
   dependencies:
     deepmerge "^4.2.2"
     graphql-sequelize "^9.4.2"
