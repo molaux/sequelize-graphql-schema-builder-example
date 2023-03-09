@@ -4,8 +4,10 @@ const { GraphQLJSON } = _GraphQLJSON
 
 // Use a register to not overwhelm foreign API
 const register = new Map([
-  ["Afghanistan", 
-      [{
+  [
+    "Afghanistan", 
+    [
+      {
         "name": "Afghanistan",
         "topLevelDomain": [
           ".af"
@@ -22,14 +24,13 @@ const register = new Map([
         ],
         "region": "Asia",
         "subregion": "Southern Asia",
-        "population": 27657145,
+        "population": 40218234,
         "latlng": [
           33,
           65
         ],
         "demonym": "Afghan",
         "area": 652230,
-        "gini": 27.8,
         "timezones": [
           "UTC+04:30"
         ],
@@ -80,22 +81,29 @@ const register = new Map([
           "pt": "Afeganistão",
           "nl": "Afghanistan",
           "hr": "Afganistan",
+          "hu": "Afganisztán",
           "fa": "افغانستان"
         },
-        "flag": "https://restcountries.eu/data/afg.svg",
+        "flag": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg",
+        "flags": {
+          "png": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Flag_of_the_Taliban.svg/320px-Flag_of_the_Taliban.svg.png",
+          "svg": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg"
+        },
+        "independent": true,
         "regionalBlocs": [
           {
             "acronym": "SAARC",
-            "name": "South Asian Association for Regional Cooperation",
-            "otherAcronyms": [],
-            "otherNames": []
+            "name": "South Asian Association for Regional Cooperation"
           }
         ],
         "cioc": "AFG"
-      }]
+      }
+    ]
   ],
-  ["Algeria", 
-      [{
+  [
+    "Algeria", 
+    [
+      {
         "name": "Algeria",
         "topLevelDomain": [
           ".dz"
@@ -113,14 +121,13 @@ const register = new Map([
         ],
         "region": "Africa",
         "subregion": "Northern Africa",
-        "population": 40400000,
+        "population": 43851043,
         "latlng": [
           28,
           3
         ],
         "demonym": "Algerian",
         "area": 2381741,
-        "gini": 35.3,
         "timezones": [
           "UTC+01:00"
         ],
@@ -160,14 +167,20 @@ const register = new Map([
           "pt": "Argélia",
           "nl": "Algerije",
           "hr": "Alžir",
+          "hu": "Algéria",
           "fa": "الجزایر"
         },
-        "flag": "https://restcountries.eu/data/dza.svg",
+        "flag": "https://flagcdn.com/dz.svg",
+        "flags": {
+          "png": "https://flagcdn.com/w320/dz.png",
+          "svg": "https://flagcdn.com/dz.svg"
+        },
+        "gini": 27.6,
+        "independent": true,
         "regionalBlocs": [
           {
             "acronym": "AU",
             "name": "African Union",
-            "otherAcronyms": [],
             "otherNames": [
               "الاتحاد الأفريقي",
               "Union africaine",
@@ -179,7 +192,6 @@ const register = new Map([
           {
             "acronym": "AL",
             "name": "Arab League",
-            "otherAcronyms": [],
             "otherNames": [
               "جامعة الدول العربية",
               "Jāmiʻat ad-Duwal al-ʻArabīyah",
@@ -188,10 +200,13 @@ const register = new Map([
           }
         ],
         "cioc": "ALG"
-      }]
-    ],
-  ["American Samoa", 
-      [{
+      }
+    ]
+  ],
+  [
+    "American Samoa", 
+    [
+      {
         "name": "American Samoa",
         "topLevelDomain": [
           ".as"
@@ -199,7 +214,7 @@ const register = new Map([
         "alpha2Code": "AS",
         "alpha3Code": "ASM",
         "callingCodes": [
-          "1684"
+          "1"
         ],
         "capital": "Pago Pago",
         "altSpellings": [
@@ -210,24 +225,22 @@ const register = new Map([
         ],
         "region": "Oceania",
         "subregion": "Polynesia",
-        "population": 57100,
+        "population": 55197,
         "latlng": [
           -14.33333333,
           -170
         ],
         "demonym": "American Samoan",
         "area": 199,
-        "gini": null,
         "timezones": [
           "UTC-11:00"
         ],
-        "borders": [],
         "nativeName": "American Samoa",
         "numericCode": "016",
         "currencies": [
           {
             "code": "USD",
-            "name": "United State Dollar",
+            "name": "United States Dollar",
             "symbol": "$"
           }
         ],
@@ -255,13 +268,19 @@ const register = new Map([
           "pt": "Samoa Americana",
           "nl": "Amerikaans Samoa",
           "hr": "Američka Samoa",
+          "hu": "Amerikai Szamoa",
           "fa": "ساموآی آمریکا"
         },
-        "flag": "https://restcountries.eu/data/asm.svg",
-        "regionalBlocs": [],
+        "flag": "https://flagcdn.com/as.svg",
+        "flags": {
+          "png": "https://flagcdn.com/w320/as.png",
+          "svg": "https://flagcdn.com/as.svg"
+        },
+        "independent": false,
         "cioc": "ASA"
-      }]
+      }
     ]
+  ]
 ])
 
 export const extraFields = ({ modelsTypes, nameFormatter }, model) => {
