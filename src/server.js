@@ -4,7 +4,7 @@ import colors from 'colors'
 import https from 'https'
 import http from 'http'
 import fs from 'fs'
-import appBuilder from './app'
+import appBuilder from './app.js'
 
 dotenv.config()
 

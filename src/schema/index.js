@@ -1,13 +1,13 @@
 'use strict'
 import dotenv from 'dotenv'
-import packageJsonData from '../../package.json'
+import packageJsonData from '../../package.json' assert { type: 'json' }
 import graphql from 'graphql'
 import sequelizeGraphQLSchemaBuilder from '@molaux/sequelize-graphql-schema-builder'
 import jwt from 'jsonwebtoken'
 import Sequelize from 'sequelize'
 import _GraphQLJSON from 'graphql-type-json'
 
-import { extraFields as countryExtraFields } from './country'
+import { extraFields as countryExtraFields } from './country/index.js'
 
 const { GraphQLJSON } = _GraphQLJSON
 const { QueryTypes } = Sequelize

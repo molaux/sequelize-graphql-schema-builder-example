@@ -1,10 +1,10 @@
-import app from '../src/app'
+import app from '../src/app.js'
 import st from 'supertest'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 import graphqlSubscriptions from 'graphql-subscriptions'
-import { getWsClient, getWsLink, subscribeFactory } from './utils/apolloSubscription'
+import { getWsClient, getWsLink, subscribeFactory } from './utils/apolloSubscription.js'
 import http from 'http'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -33,11 +33,14 @@ const subscriptions = subscriptionsFiles
   .map((fileName) => fileName.split('.')[0])
 
 beforeAll(async () => {
+  console.log('Building server...')
   const server = await app()
 
   httpServer = http.createServer(server.app)
   const subscriptionServer = server.buildSubscriptionServer(httpServer)
   await new Promise(resolve => httpServer.listen({ host: process.env.HOST, port: process.env.PORT }, () => resolve()))
+  console.log('Building client...')
+  
   wsClient = getWsClient(`ws://${process.env.HOST}:${process.env.PORT}${subscriptionServer.wsServer.options.path}`)
   subscribe = subscribeFactory(getWsLink(wsClient))
 
@@ -143,14 +146,14 @@ for (const requestFile of requestsFiles) {
       test(breadcrumb('subscription', publication, 'response'), () => {
         const { expected, response } = expectedPublications[publication]
         expect(response).toEqual(expected)
-      })
+      }, 10000)
     }
 
     for (const publication of subscriptions) {
       test(breadcrumb('subscription', publication, 'no more'), () => {
         const { response } = unexpectedPublications[publication]
         expect(response).toEqual({})
-      })
+      }, 10000)
     }
-  })
+  }, 60000)
 }

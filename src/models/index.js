@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import fs from 'fs'
 import Sequelize from 'sequelize'
 
-import configData from '../../config/model.json'
+import configData from '../../config/model.json' assert { type: 'json' }
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 
