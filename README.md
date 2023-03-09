@@ -19,7 +19,7 @@ $ composer install
 $ yarn
 ```
 
-The project is written for node / ECMAScript module and node is run with `--experimental-specifier-resolution=node` so you need at least node 12. If you use [nvm](https://github.com/nvm-sh/nvm), issue :
+The project is written for node / ECMAScript module and targetted to use at least node 18. If you use [nvm](https://github.com/nvm-sh/nvm), issue :
 
 ```bash
 $ nvm use
